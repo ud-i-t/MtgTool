@@ -4,9 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MTGTool"
+        xmlns:vm="clr-namespace:MTGTool.ViewModel"
+        xmlns:view="clr-namespace:MTGTool.View"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
+    <DockPanel LastChildFill="False">
+        <view:MessageList Width="200"></view:MessageList>
+        <TextBlock Text="{Binding Path=Name}" DockPanel.Dock="Right">
+        </TextBlock>
+        <Button Command="{Binding Path=GreetCommand}" DockPanel.Dock="Bottom">
+            <TextBox Text="再生"></TextBox>
+        </Button>
+    </DockPanel>
 </Window>
