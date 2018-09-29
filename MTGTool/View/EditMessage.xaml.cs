@@ -1,5 +1,4 @@
-﻿using MTGTool.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,19 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MTGTool
+namespace MTGTool.View
 {
     /// <summary>
-    /// MainWindow.xaml の相互作用ロジック
+    /// EditMessage.xaml の相互作用ロジック
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class EditMessage : UserControl
     {
-
-        public MainWindow()
+        public EditMessage()
         {
-            Repository.Set(typeof(MessageList), new MessageList());
-            Repository.Set(typeof(SelectedMessage), new SelectedMessage());
-
             InitializeComponent();
         }
     }

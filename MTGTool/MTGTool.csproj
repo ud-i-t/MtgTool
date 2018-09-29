@@ -72,10 +72,15 @@
     </ApplicationDefinition>
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\MessageList.cs" />
+    <Compile Include="Model\SelectedMessage.cs" />
     <Compile Include="Repository.cs" />
+    <Compile Include="ViewModel\EditMessageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MessageListViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\EditMessage.xaml.cs">
+      <DependentUpon>EditMessage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MessageList.xaml.cs">
       <DependentUpon>MessageList.xaml</DependentUpon>
     </Compile>
@@ -91,6 +96,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\EditMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MessageList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
              xmlns:local="clr-namespace:MTGTool.View"
              xmlns:vm="clr-namespace:MTGTool.ViewModel"
              mc:Ignorable="d" 
@@ -11,13 +13,17 @@
         <vm:MessageListViewModel />
     </UserControl.DataContext>
 
-    <ListBox ItemsSource="{Binding Path=MessageList}">
-        <ListBox.ItemTemplate>
+    <ListView ItemsSource="{Binding Path=MessageList}" SelectedItem="{Binding Path=IsSelected}">
+        <ListView.ItemTemplate>
             <DataTemplate>
                 <StackPanel>
-                    <TextBlock Text="{Binding Path=Text}" />
+                    <TextBlock Text="{Binding Path=Text}"/>
+                    <WrapPanel>
+                        <TextBlock Text="{Binding Path=Time}" />
+                        <TextBlock Text="ミリ秒" />
+                    </WrapPanel>
                 </StackPanel>
             </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
+        </ListView.ItemTemplate>
+    </ListView>
 </UserControl>
