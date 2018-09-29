@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MTGTool.Model
 {
-    class Message : IMessage
+    class AddNewMessage : IMessage
     {
         public string Text { get; set; }
-        public int Time { get; set; } = 3000;
+        public int Time { get; set; }
     }
 }

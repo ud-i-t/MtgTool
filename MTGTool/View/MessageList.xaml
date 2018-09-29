@@ -7,23 +7,33 @@
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
              xmlns:local="clr-namespace:MTGTool.View"
              xmlns:vm="clr-namespace:MTGTool.ViewModel"
+             xmlns:model="clr-namespace:MTGTool.Model"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
         <vm:MessageListViewModel />
     </UserControl.DataContext>
 
-    <ListView ItemsSource="{Binding Path=MessageList}" SelectedItem="{Binding Path=IsSelected}">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <StackPanel>
-                    <TextBlock Text="{Binding Path=Text}"/>
-                    <WrapPanel>
-                        <TextBlock Text="{Binding Path=Time}" />
-                        <TextBlock Text="ミリ秒" />
-                    </WrapPanel>
-                </StackPanel>
-            </DataTemplate>
-        </ListView.ItemTemplate>
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type model:Message}">
+            <StackPanel>
+                <TextBlock Text="{Binding Path=Text}" DockPanel.Dock="Left"/>
+                <WrapPanel DockPanel.Dock="Left">
+                    <TextBlock Text="{Binding Path=Time}" />
+                    <TextBlock Text="ミリ秒" />
+                </WrapPanel>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type model:AddNewMessage}">
+            <TextBlock Text="{Binding Path=Text}"  TextAlignment="Center" Width="{Binding ElementName=List.Width}"></TextBlock>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <ListView Name="List" ItemsSource="{Binding Path=MessageList}" SelectedItem="{Binding Path=IsSelected}">
+        <ListView.ItemContainerStyle>
+            <Style TargetType="ListViewItem">
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            </Style>
+        </ListView.ItemContainerStyle>
     </ListView>
 </UserControl>

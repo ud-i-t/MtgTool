@@ -19,12 +19,15 @@
         <TextBlock Text="{Binding Path=Name}" DockPanel.Dock="Right">
         </TextBlock>
         <StackPanel Width="200" DockPanel.Dock="Left">
-            <view:MessageList Height="500"></view:MessageList>
+            <view:MessageList></view:MessageList>
+            <Button Command="{Binding Path=AddCommand}">
+                <TextBlock Text="追加"></TextBlock>
+            </Button>
             <Button Command="{Binding Path=EditCommand}">
-                <TextBox Text="編集"></TextBox>
+                <TextBlock Text="編集"></TextBlock>
             </Button>
             <Button Command="{Binding Path=GreetCommand}">
-                <TextBox Text="再生"></TextBox>
+                <TextBlock Text="再生"></TextBlock>
             </Button>
         </StackPanel>
     </DockPanel>

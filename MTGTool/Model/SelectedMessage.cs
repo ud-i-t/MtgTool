@@ -10,8 +10,8 @@ namespace MTGTool.Model
 {
     class SelectedMessage
     {
-        private Message _message;
-        public Message message
+        private IMessage _message;
+        public IMessage message
         {
             get
             {
@@ -24,12 +24,12 @@ namespace MTGTool.Model
             }
         }
 
-        private Subject<Message> _onChange;
-        public IObservable<Message> OnChange => _onChange.AsObservable();
+        private Subject<IMessage> _onChange;
+        public IObservable<IMessage> OnChange => _onChange.AsObservable();
 
         public SelectedMessage()
         {
-            _onChange = new Subject<Message>();
+            _onChange = new Subject<IMessage>();
         }
     }
 }

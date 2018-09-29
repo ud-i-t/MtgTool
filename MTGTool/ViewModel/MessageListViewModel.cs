@@ -12,10 +12,10 @@ namespace MTGTool.ViewModel
 {
     class MessageListViewModel : ViewModelBase
     {
-        public ObservableCollection<Message> MessageList { get; set; }
+        public MessageList MessageList { get; set; }
 
-        private Message _isSelected;
-        public Message IsSelected
+        private IMessage _isSelected;
+        public IMessage IsSelected
         {
             get
             {

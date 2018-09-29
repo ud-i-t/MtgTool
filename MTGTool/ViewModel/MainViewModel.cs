@@ -69,7 +69,6 @@ namespace MTGTool.ViewModel
         private void GreetCommandExecute()
         {
             var repo = Repository.Get(typeof(MessageList)) as MessageList;
-            repo.Add(new Message() { Text = "First Main" });
 
             Task.Run(() =>
             {
@@ -88,7 +87,6 @@ namespace MTGTool.ViewModel
         }
 
         private ICommand _editCommand;
-
         public ICommand EditCommand
         {
             get
@@ -106,6 +104,28 @@ namespace MTGTool.ViewModel
         {
             var msg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
             return msg.message != null;
+        }
+
+
+        private ICommand _addCommand;
+        public ICommand AddCommand
+        {
+            get
+            {
+                return _addCommand ??
+                    (_addCommand = new RelayCommand(AddCommandExecute, CanAddCommandExecute));
+            }
+        }
+
+        private void AddCommandExecute()
+        {
+            var repo = Repository.Get(typeof(MessageList)) as MessageList;
+            repo.Add(new Message());
+        }
+
+        private bool CanAddCommandExecute()
+        {
+            return true;
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MTGTool.Model
 {
-    class MessageList : ObservableCollection<Message>
+    class MessageList : ObservableCollection<IMessage>
     {
         public MessageList() : base()
         {
