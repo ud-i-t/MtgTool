@@ -10,18 +10,12 @@ namespace MTGTool.ViewModel
 {
     class EditMessageViewModel : ViewModelBase
     {
-        private SelectedMessage _msg = new SelectedMessage();
-        public SelectedMessage Msg
+        public SelectedMessage Msg { get; set; }
+
+        public EditMessageViewModel()
         {
-            get
-            {
-                return _msg;
-            }
-            set
-            {
-                _msg = value;
-                RaisePropertyChanged("Msg");
-            }
+            Msg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
+            Msg.OnChange.Subscribe(_ => RaisePropertyChanged("Msg"));
         }
     }
 }

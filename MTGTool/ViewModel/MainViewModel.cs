@@ -86,5 +86,26 @@ namespace MTGTool.ViewModel
         {
             return true;
         }
+
+        private ICommand _editCommand;
+
+        public ICommand EditCommand
+        {
+            get
+            {
+                return _editCommand ??
+                    (_editCommand = new RelayCommand(EditCommandExecute, CanEditCommandExecute));
+            }
+        }
+
+        private void EditCommandExecute()
+        {
+        }
+
+        private bool CanEditCommandExecute()
+        {
+            var msg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
+            return msg.message != null;
+        }
     }
 }

@@ -20,10 +20,10 @@
         </TextBlock>
         <StackPanel Width="200" DockPanel.Dock="Left">
             <view:MessageList Height="500"></view:MessageList>
-            <Button>
+            <Button Command="{Binding Path=EditCommand}">
                 <TextBox Text="編集"></TextBox>
             </Button>
-            <Button Command="{Binding Path=GreetCommand}" DockPanel.Dock="Right">
+            <Button Command="{Binding Path=GreetCommand}">
                 <TextBox Text="再生"></TextBox>
             </Button>
         </StackPanel>
