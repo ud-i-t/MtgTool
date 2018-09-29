@@ -2,6 +2,8 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
 using MTGTool.Model;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MTGTool.ViewModel
@@ -68,6 +70,15 @@ namespace MTGTool.ViewModel
         {
             var repo = Repository.Get(typeof(MessageList)) as MessageList;
             repo.Add(new Message() { Text = "First Main" });
+
+            Task.Run(() =>
+            {
+                foreach (var m in repo)
+                {
+                    Name = m.Text;
+                    Thread.Sleep(m.Time);
+                }
+            });
         }
 
         // 挨拶コマンドを実行できるか判定する。
