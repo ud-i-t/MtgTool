@@ -25,10 +25,10 @@ namespace MTGTool
 
         public MainWindow()
         {
-            Repository.Set(typeof(ActorList), new ActorList());
+            //Repository.Set(typeof(ActorList), new ActorList());
+            Repository.Load();
             Repository.Set(typeof(MessageList), new MessageList());
             Repository.Set(typeof(SelectedMessage), new SelectedMessage());
-
             InitializeComponent();
         }
     }

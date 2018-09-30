@@ -10,10 +10,12 @@ using System.Windows.Media.Imaging;
 
 namespace MTGTool.Model.Actors
 {
+    [Serializable()]
     class Actor : IActor
     {
         public string Name { get; set; }
 
+        [NonSerialized()]
         private BitmapImage _graphic;
         public BitmapImage Graphic
         {
@@ -32,9 +34,7 @@ namespace MTGTool.Model.Actors
         {
             _filePath = filePath;
             Name = name;
-
-            if (filePath == "") return;
-            Graphic = BitmapUtil.GetImage(filePath);
+            ReloadImage();
         }
 
         public override string ToString()
@@ -45,6 +45,12 @@ namespace MTGTool.Model.Actors
         public IActor Clone()
         {
             return new Actor(Name, _filePath);
+        }
+
+        public void ReloadImage()
+        {
+            if (_filePath == "") return;
+            Graphic = BitmapUtil.GetImage(_filePath);
         }
     }
 }

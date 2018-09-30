@@ -15,5 +15,10 @@ namespace MTGTool.Model.Actors
             Add(new Actor("魔理沙", @"C:\Users\ud\source\repos\MTGTool\MTGTool\bin\Debug\Image\chara\魔理沙01通常.png"));
             Add(new Actor("咲夜", @"C:\Users\ud\source\repos\MTGTool\MTGTool\bin\Debug\Image\chara\sakuya1.png"));
         }
+
+        public ActorList(IList<IActor> list) : base(list)
+        {
+
+        }
     }
 }
