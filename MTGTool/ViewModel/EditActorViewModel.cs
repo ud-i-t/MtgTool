@@ -69,6 +69,9 @@ namespace MTGTool.ViewModel
             dialog.Title = "画像を選択";
             dialog.Filter = "画像(*.png)|*.png";
             if (dialog.ShowDialog() != DialogResult.OK) return;
+
+            EditedActor.Graphic = Util.BitmapUtil.GetImage(dialog.FileName);
+            RaisePropertyChanged("EditedActor");
         }
 
         private bool CanSelectImgCommandExecute()

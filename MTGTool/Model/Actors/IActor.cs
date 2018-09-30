@@ -10,7 +10,7 @@ namespace MTGTool.Model.Actors
     interface IActor
     {
         string Name { get; }
-        BitmapImage Graphic { get; }
+        BitmapImage Graphic { get; set; }
         IActor Clone();
     }
 }

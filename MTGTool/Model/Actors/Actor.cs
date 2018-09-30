@@ -13,7 +13,19 @@ namespace MTGTool.Model.Actors
     class Actor : IActor
     {
         public string Name { get; set; }
-        public BitmapImage Graphic { get; set; }
+
+        private BitmapImage _graphic;
+        public BitmapImage Graphic
+        {
+            get {
+                return _graphic;
+            }
+            set
+            {
+                _graphic = value;
+                _filePath = _graphic.UriSource.ToString();
+            }
+        }
         private string _filePath;
 
         public Actor(string name, string filePath)
