@@ -25,7 +25,7 @@ namespace MTGTool.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        public Thickness _palletMargin;
+        public Thickness _palletMargin = new Thickness(1600, 0, 0, -10);
         public Thickness PalletMargin {
             get {
                 return _palletMargin;
@@ -34,6 +34,20 @@ namespace MTGTool.ViewModel
             {
                 _palletMargin = value;
                 RaisePropertyChanged("PalletMargin");
+            }
+        }
+
+        private ViewModelBase _pallet;
+        public ViewModelBase Pallet
+        {
+            get
+            {
+                return _pallet;
+            }
+            set
+            {
+                _pallet = value;
+                RaisePropertyChanged("Pallet");
             }
         }
 
@@ -50,8 +64,6 @@ namespace MTGTool.ViewModel
             ////{
             ////    // Code runs "for real"
             ////}
-            
-            PalletMargin = new Thickness(1600, 0, 0, -10);
         }
 
         private ICommand _greetCommand;
@@ -101,7 +113,8 @@ namespace MTGTool.ViewModel
 
         private void EditCommandExecute()
         {
-            PalletMargin = new Thickness(1000, 0, 0, -10);
+            Pallet = new EditMessageViewModel();
+            ShowPallet();
         }
 
         private bool CanEditCommandExecute()
@@ -131,6 +144,32 @@ namespace MTGTool.ViewModel
         private bool CanAddCommandExecute()
         {
             return true;
+        }
+
+        private ICommand _actorCommand;
+        public ICommand ActorCommand
+        {
+            get
+            {
+                return _actorCommand ??
+                    (_actorCommand = new RelayCommand(ActorCommandExecute, CanActorCommandExecute));
+            }
+        }
+
+        private void ActorCommandExecute()
+        {
+            Pallet = new EditActorViewModel();
+            ShowPallet();
+        }
+
+        private bool CanActorCommandExecute()
+        {
+            return true;
+        }
+
+        private void ShowPallet()
+        {
+            PalletMargin = new Thickness(1000, 0, 0, -10);
         }
     }
 }

@@ -96,10 +96,14 @@
     <Compile Include="Repository.cs" />
     <Compile Include="Util\BitmapUtil.cs" />
     <Compile Include="ViewModel\CanvasViewModel.cs" />
+    <Compile Include="ViewModel\EditActorViewModel.cs" />
     <Compile Include="ViewModel\EditMessageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MessageListViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\EditActor.xaml.cs">
+      <DependentUpon>EditActor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\EditMessage.xaml.cs">
       <DependentUpon>EditMessage.xaml</DependentUpon>
     </Compile>
@@ -121,6 +125,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\EditActor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\EditMessage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

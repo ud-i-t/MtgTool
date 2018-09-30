@@ -6,6 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MTGTool"
         xmlns:vm="clr-namespace:MTGTool.ViewModel"
+        xmlns:model="clr-namespace:MTGTool.Model"
         xmlns:view="clr-namespace:MTGTool.View"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1600"
@@ -14,10 +15,19 @@
     <Window.DataContext>
         <vm:MainViewModel />
     </Window.DataContext>
-
+    
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:EditMessageViewModel}">
+            <view:EditMessage HorizontalAlignment="Right"/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:EditActorViewModel}">
+            <view:EditActor HorizontalAlignment="Right"/>
+        </DataTemplate>
+    </Window.Resources>
+    
     <Grid>
         <WrapPanel>
-            <Button HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="100" Height="50">
+            <Button Command="{Binding ActorCommand}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="100" Height="50">
                 <TextBlock Text="アクター編集"></TextBlock>
             </Button>
         </WrapPanel>
@@ -35,7 +45,7 @@
         </StackPanel>
         <view:MovieCanvas></view:MovieCanvas>
         <Canvas Margin="{Binding PalletMargin}">
-            <view:EditMessage HorizontalAlignment="Right"/>
+            <ContentControl Content="{Binding Pallet}"></ContentControl>
         </Canvas>
     </Grid>
 </Window>
