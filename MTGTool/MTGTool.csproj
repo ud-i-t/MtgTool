@@ -92,6 +92,7 @@
     <Compile Include="Model\MessageList.cs" />
     <Compile Include="Model\SelectedMessage.cs" />
     <Compile Include="Repository.cs" />
+    <Compile Include="ViewModel\CanvasViewModel.cs" />
     <Compile Include="ViewModel\EditMessageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MessageListViewModel.cs" />
@@ -101,6 +102,9 @@
     </Compile>
     <Compile Include="View\MessageList.xaml.cs">
       <DependentUpon>MessageList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MovieCanvas.xaml.cs">
+      <DependentUpon>MovieCanvas.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -119,6 +123,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MessageList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MovieCanvas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

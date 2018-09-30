@@ -2,6 +2,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
 using MTGTool.Model;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -22,21 +23,7 @@ namespace MTGTool.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        private string _name = "";
-
-        // 名前。
-        public string Name
-        {
-            get { return _name; }
-            set
-            {
-                if (_name != value)
-                {
-                    _name = value;
-                    RaisePropertyChanged("Name");
-                }
-            }
-        }
+        
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -68,15 +55,17 @@ namespace MTGTool.ViewModel
         // 挨拶コマンドの実行。
         private void GreetCommandExecute()
         {
-            var repo = Repository.Get(typeof(MessageList)) as MessageList;
+            var list = Repository.Get(typeof(MessageList)) as MessageList;
+            var current = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
 
             Task.Run(() =>
             {
-                foreach (var m in repo)
+                foreach (var m in list)
                 {
-                    Name = m.Text;
+                    current.message = m;
                     Thread.Sleep(m.Time);
                 }
+                current.message = list.First();
             });
         }
 

@@ -28,12 +28,6 @@
                 <TextBlock Text="再生"></TextBlock>
             </Button>
         </StackPanel>
-        <Grid Name="canvas" Width="1280" Height="720" HorizontalAlignment="Left" Margin="200,24,0,25">
-            <Image Source="Image/UI/背景.png" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
-            <Image Source="Image/chara/sakuya1.png" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
-            <Image Source="Image/UI/メッセージウインドウ.png" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,-37,0,37" Width="1280"/>
-            <TextBlock Text="{Binding Path=Name}" FontSize="30" FontFamily="メイリオ" Background="Transparent" Margin="28,0,0,178" HorizontalAlignment="Left" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}" VerticalAlignment="Bottom"/>
-            <view:EditMessage Margin="0,10,-427,-10" HorizontalAlignment="Right" Width="419"></view:EditMessage>
-        </Grid>
+        <view:MovieCanvas></view:MovieCanvas>
     </Grid>
 </Window>
