@@ -1,4 +1,5 @@
 ﻿using MTGTool.Model;
+using MTGTool.Model.Actors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace MTGTool
 
         public MainWindow()
         {
+            Repository.Set(typeof(ActorList), new ActorList());
             Repository.Set(typeof(MessageList), new MessageList());
             Repository.Set(typeof(SelectedMessage), new SelectedMessage());
 

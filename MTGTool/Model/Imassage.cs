@@ -11,6 +11,6 @@ namespace MTGTool.Model
     {
         string Text { get; set; }
         int Time { get; set; }
-        Actor Actor { get; }
+        IActor Actor { get; }
     }
 }

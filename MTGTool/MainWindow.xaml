@@ -16,7 +16,12 @@
     </Window.DataContext>
 
     <Grid>
-        <StackPanel HorizontalAlignment="Left" Width="200">
+        <WrapPanel>
+            <Button HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="100" Height="50">
+                <TextBlock Text="アクター編集"></TextBlock>
+            </Button>
+        </WrapPanel>
+        <StackPanel HorizontalAlignment="Left" Width="200" Margin="0,60,0,0">
             <view:MessageList></view:MessageList>
             <Button Command="{Binding Path=AddCommand}">
                 <TextBlock Text="追加"></TextBlock>
@@ -29,5 +34,8 @@
             </Button>
         </StackPanel>
         <view:MovieCanvas></view:MovieCanvas>
+        <Canvas Margin="{Binding PalletMargin}">
+            <view:EditMessage HorizontalAlignment="Right"/>
+        </Canvas>
     </Grid>
 </Window>

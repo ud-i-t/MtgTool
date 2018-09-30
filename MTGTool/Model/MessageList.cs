@@ -12,8 +12,9 @@ namespace MTGTool.Model
     {
         public MessageList() : base()
         {
-            var reimu = new Actor("霊夢", "/Image/chara/霊夢01通常.png");
-            var sakuya = new Actor("咲夜", "/Image/chara/sakuya1.png");
+            var actors = Repository.Get(typeof(ActorList)) as ActorList;
+            var reimu = actors.First(x => x.Name == "霊夢");
+            var sakuya = actors.First(x => x.Name == "咲夜");
 
             Add(new Message { Text = "アンタップ" , Actor = reimu});
             Add(new Message { Text = "アップキープ", Actor = sakuya });

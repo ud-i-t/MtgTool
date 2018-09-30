@@ -87,6 +87,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Actors\Actor.cs" />
+    <Compile Include="Model\Actors\ActorList.cs" />
     <Compile Include="Model\Actors\IActor.cs" />
     <Compile Include="Model\IMassage.cs" />
     <Compile Include="Model\Message.cs" />

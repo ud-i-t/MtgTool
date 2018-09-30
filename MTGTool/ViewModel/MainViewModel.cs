@@ -2,9 +2,11 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
 using MTGTool.Model;
+using MTGTool.Model.Actors;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MTGTool.ViewModel
@@ -23,7 +25,17 @@ namespace MTGTool.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        
+        public Thickness _palletMargin;
+        public Thickness PalletMargin {
+            get {
+                return _palletMargin;
+            }
+            set
+            {
+                _palletMargin = value;
+                RaisePropertyChanged("PalletMargin");
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
@@ -38,6 +50,8 @@ namespace MTGTool.ViewModel
             ////{
             ////    // Code runs "for real"
             ////}
+            
+            PalletMargin = new Thickness(1600, 0, 0, -10);
         }
 
         private ICommand _greetCommand;
@@ -87,6 +101,7 @@ namespace MTGTool.ViewModel
 
         private void EditCommandExecute()
         {
+            PalletMargin = new Thickness(1000, 0, 0, -10);
         }
 
         private bool CanEditCommandExecute()
@@ -109,7 +124,8 @@ namespace MTGTool.ViewModel
         private void AddCommandExecute()
         {
             var repo = Repository.Get(typeof(MessageList)) as MessageList;
-            repo.Add(new Message());
+            var actors = Repository.Get(typeof(ActorList)) as ActorList;
+            repo.Add(new Message() { Actor = actors.First()});
         }
 
         private bool CanAddCommandExecute()

@@ -9,7 +9,7 @@ namespace MTGTool.Model
 {
     class Message : IMessage
     {
-        public Actor Actor{ get; set; }
+        public IActor Actor{ get; set; }
         public string Text { get; set; }
         public int Time { get; set; } = 1000;
     }

@@ -18,5 +18,10 @@ namespace MTGTool.Model.Actors
             Name = name;
             Graphic = BitmapUtil.GetImage(filePath);
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
