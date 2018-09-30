@@ -29,9 +29,18 @@
             <view:EditActor HorizontalAlignment="Right"/>
         </DataTemplate>
     </Window.Resources>
-    
+
     <Grid>
-        <WrapPanel>
+        <Menu VerticalAlignment="Top">
+            <MenuItem Header="ファイル">
+                <MenuItem Header="新規作成"/>
+                <MenuItem Header="開く"/>
+                <MenuItem Header="保存"/>
+                <MenuItem Header="別名で保存"/>
+                <MenuItem Header="終了"/>
+            </MenuItem>
+        </Menu>
+        <WrapPanel Margin="0,20,0,0">
             <Button Command="{Binding ActorCommand}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="100" Height="50">
                 <TextBlock Text="アクター編集"></TextBlock>
             </Button>
