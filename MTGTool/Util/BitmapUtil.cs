@@ -13,7 +13,7 @@ namespace MTGTool.Util
         {
             var img = new BitmapImage();
             img.BeginInit();
-            img.UriSource = new Uri(System.AppDomain.CurrentDomain.BaseDirectory + path);
+            img.UriSource = new Uri(path);
             img.EndInit();
             return img;
         }

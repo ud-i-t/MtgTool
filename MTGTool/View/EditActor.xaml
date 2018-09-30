@@ -19,12 +19,22 @@
         </WrapPanel>
         <WrapPanel>
             <TextBlock Text="名前：" Width="150" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBlock>
-            <TextBox Text="{Binding Actor.Name}" Width="200" ></TextBox>
+            <TextBox Text="{Binding EditedActor.Name}" Width="200" ></TextBox>
         </WrapPanel>
         <WrapPanel>
             <TextBlock Text="画像：" Width="150"></TextBlock>
-            <TextBox Text="{Binding Actor.Graphic}" Width="200"></TextBox>
-            <TextBlock Text="ミリ秒" Width="150"></TextBlock>
+            <TextBox Text="{Binding EditedActor.Graphic}" Width="200"></TextBox>
+            <Button Command="{Binding SelectImgCommand}">
+                <TextBlock Text="..."></TextBlock>
+            </Button>
+        </WrapPanel>
+        <WrapPanel>
+            <Button Command="{Binding SubmitCommand}" Width="120" HorizontalAlignment="Left" Margin="10,0,0,0">
+                <TextBlock Text="保存"></TextBlock>
+            </Button>
+            <Button Width="120" HorizontalAlignment="Left" Margin="10,0,0,0">
+                <TextBlock Text="キャンセル"></TextBlock>
+            </Button>
         </WrapPanel>
     </StackPanel>
 </UserControl>

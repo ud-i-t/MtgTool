@@ -22,8 +22,8 @@ namespace MTGTool.ViewModel
 
         public CanvasViewModel()
         {
-            BackGround = BitmapUtil.GetImage("/Image/UI/背景.png");
-            MessageWindow = BitmapUtil.GetImage("/Image/UI/メッセージウインドウ.png");
+            BackGround = BitmapUtil.GetImage(@"C:\Users\ud\source\repos\MTGTool\MTGTool\bin\Debug\Image\UI\背景.png");
+            MessageWindow = BitmapUtil.GetImage(@"C:\Users\ud\source\repos\MTGTool\MTGTool\bin\Debug\Image\UI\メッセージウインドウ.png");
             _currentMsg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
             _currentMsg.OnChange.Subscribe(_ => {
                 RaisePropertyChanged("Name");

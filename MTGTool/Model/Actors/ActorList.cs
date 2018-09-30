@@ -11,9 +11,9 @@ namespace MTGTool.Model.Actors
     {
         public ActorList()
         {
-            Add(new Actor("霊夢", "/Image/chara/霊夢01通常.png"));
-            Add(new Actor("魔理沙", "/Image/chara/魔理沙01通常.png"));
-            Add(new Actor("咲夜", "/Image/chara/sakuya1.png"));
+            Add(new Actor("霊夢", @"C:\Users\ud\source\repos\MTGTool\MTGTool\bin\Debug\Image\chara\霊夢01通常.png"));
+            Add(new Actor("魔理沙", @"C:\Users\ud\source\repos\MTGTool\MTGTool\bin\Debug\Image\chara\魔理沙01通常.png"));
+            Add(new Actor("咲夜", @"C:\Users\ud\source\repos\MTGTool\MTGTool\bin\Debug\Image\chara\sakuya1.png"));
         }
     }
 }

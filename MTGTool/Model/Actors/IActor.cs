@@ -11,5 +11,6 @@ namespace MTGTool.Model.Actors
     {
         string Name { get; }
         BitmapImage Graphic { get; }
+        IActor Clone();
     }
 }
