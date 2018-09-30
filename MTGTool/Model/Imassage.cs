@@ -11,6 +11,8 @@ namespace MTGTool.Model
     {
         string Text { get; set; }
         int Time { get; set; }
+        int AutoTime { get; }
         IActor Actor { get; }
+        IObservable<IMessage> OnChange { get; }
     }
 }

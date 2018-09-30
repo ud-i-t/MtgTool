@@ -19,11 +19,13 @@
         </WrapPanel>
         <WrapPanel>
             <TextBlock Text="メッセージ：" Width="150" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBlock>
-            <TextBox Text="{Binding Path=Msg.message.Text}" AcceptsReturn="True" Width="200" Height="58"></TextBox>
+            <TextBox Text="{Binding Msg.message.Text}" AcceptsReturn="True" Width="200" Height="58"></TextBox>
         </WrapPanel>
         <WrapPanel>
             <TextBlock Text="表示時間：" Width="150"></TextBlock>
-            <TextBox Text="{Binding Path=Msg.message.Time}" Width="200"></TextBox>
+            <TextBlock Text="{Binding Msg.message.AutoTime}" Width="50"></TextBlock>
+            <TextBlock Text="+"></TextBlock>
+            <TextBox Text="{Binding Path=Msg.message.Time}" Width="50"></TextBox>
             <TextBlock Text="ミリ秒" Width="150"></TextBlock>
         </WrapPanel>
     </StackPanel>

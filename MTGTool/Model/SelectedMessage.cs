@@ -19,17 +19,16 @@ namespace MTGTool.Model
             }
             set
             {
+                _disposable?.Dispose();
                 _message = value;
+                _disposable = _message.OnChange.Subscribe(x => _onChange.OnNext(x));
                 _onChange.OnNext(message);
             }
         }
 
-        private Subject<IMessage> _onChange;
-        public IObservable<IMessage> OnChange => _onChange.AsObservable();
+        private IDisposable _disposable;
 
-        public SelectedMessage()
-        {
-            _onChange = new Subject<IMessage>();
-        }
+        private Subject<IMessage> _onChange = new Subject<IMessage>();
+        public IObservable<IMessage> OnChange => _onChange.AsObservable();
     }
 }
