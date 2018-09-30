@@ -8,6 +8,8 @@
         xmlns:vm="clr-namespace:MTGTool.ViewModel"
         xmlns:model="clr-namespace:MTGTool.Model"
         xmlns:view="clr-namespace:MTGTool.View"
+        xmlns:behavior="clr-namespace:MTGTool.Behavior"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1600"
         WindowStyle="SingleBorderWindow">
@@ -15,6 +17,9 @@
     <Window.DataContext>
         <vm:MainViewModel />
     </Window.DataContext>
+    <i:Interaction.Behaviors>
+        <behavior:MainWindowClose/>
+    </i:Interaction.Behaviors>
     
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:EditMessageViewModel}">

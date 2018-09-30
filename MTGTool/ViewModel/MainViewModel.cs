@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
 using MTGTool.Model;
 using MTGTool.Model.Actors;
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace MTGTool.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase, IDisposable
     {
         public Thickness _palletMargin = new Thickness(1600, 0, 0, -10);
         public Thickness PalletMargin {
@@ -170,6 +171,11 @@ namespace MTGTool.ViewModel
         private void ShowPallet()
         {
             PalletMargin = new Thickness(1000, 0, 0, -10);
+        }
+
+        public void Dispose()
+        {
+            Repository.Save();
         }
     }
 }

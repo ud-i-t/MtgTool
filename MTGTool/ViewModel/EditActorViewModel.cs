@@ -38,6 +38,7 @@ namespace MTGTool.ViewModel
         {
             get
             {
+                if(_editedActor == null)_editedActor = new Actor("", "");
                 return _editedActor;
             }
             set
@@ -91,9 +92,16 @@ namespace MTGTool.ViewModel
 
         private void SubmitCommandExecute()
         {
-            int insertPos = Actors.IndexOf(Actor);
-            Actors.Remove(Actor);
-            Actors.Insert(insertPos, _editedActor);
+            if (Actors.Contains(Actor))
+            {
+                int insertPos = Actors.IndexOf(Actor);
+                Actors.Remove(Actor);
+                Actors.Insert(insertPos, _editedActor);
+                Actor = _editedActor;
+                return;
+            }
+
+            Actors.Add(_editedActor);
             Actor = _editedActor;
         }
 
