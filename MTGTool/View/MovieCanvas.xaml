@@ -18,7 +18,8 @@
         <Image Source="{Binding Path=BackGround}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
         <Image Source="{Binding Path=MessageWindow}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,-37,0,37" Width="1280"/>
         <Image Source="{Binding Path=Character}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
-        <TextBlock Text="{Binding Path=Name}" FontSize="30" FontFamily="メイリオ" Background="Transparent" Margin="28,0,0,178" HorizontalAlignment="Left" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}" VerticalAlignment="Bottom"/>
+        <TextBlock Text="{Binding Path=Message}" FontSize="30" FontFamily="メイリオ" Background="Transparent" Margin="28,0,0,178" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+        <TextBlock Text="{Binding Path=Name}" FontSize="30" FontFamily="メイリオ" Foreground="Wheat" Background="Transparent" Margin="28,0,0,270" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
         <view:EditMessage Margin="0,10,-427,-10" HorizontalAlignment="Right" Width="419"></view:EditMessage>
     </Grid>
 </UserControl>

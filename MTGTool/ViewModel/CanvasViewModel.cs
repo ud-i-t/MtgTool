@@ -14,13 +14,11 @@ namespace MTGTool.ViewModel
     {
         public BitmapImage BackGround { get; set; }
         public BitmapImage Character => _currentMsg.message?.Actor.Graphic;
+        public string Name =>_currentMsg.message?.Actor.Name;
+        public string Message => _currentMsg.message?.Text;
         public BitmapImage MessageWindow { get; set; }
 
         private SelectedMessage _currentMsg;
-        public string Name
-        {
-            get { return _currentMsg.message?.Text; }
-        }
 
         public CanvasViewModel()
         {
@@ -29,6 +27,7 @@ namespace MTGTool.ViewModel
             _currentMsg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
             _currentMsg.OnChange.Subscribe(_ => {
                 RaisePropertyChanged("Name");
+                RaisePropertyChanged("Message");
                 RaisePropertyChanged("Character");
             });
         }
