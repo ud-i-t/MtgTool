@@ -86,12 +86,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\AddNewMessage.cs" />
+    <Compile Include="Model\Actors\Actor.cs" />
+    <Compile Include="Model\Actors\IActor.cs" />
     <Compile Include="Model\IMassage.cs" />
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\MessageList.cs" />
     <Compile Include="Model\SelectedMessage.cs" />
     <Compile Include="Repository.cs" />
+    <Compile Include="Util\BitmapUtil.cs" />
     <Compile Include="ViewModel\CanvasViewModel.cs" />
     <Compile Include="ViewModel\EditMessageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -158,5 +160,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

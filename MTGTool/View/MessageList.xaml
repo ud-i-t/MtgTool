@@ -22,9 +22,6 @@
                 </WrapPanel>
             </StackPanel>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type model:AddNewMessage}">
-            <TextBlock Text="{Binding Path=Text}"  TextAlignment="Center" Width="{Binding ElementName=List.Width}"></TextBlock>
-        </DataTemplate>
     </UserControl.Resources>
 
     <ListView Name="List" ItemsSource="{Binding Path=MessageList}" SelectedItem="{Binding Path=IsSelected}">

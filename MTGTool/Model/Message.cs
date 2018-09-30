@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MTGTool.Model.Actors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace MTGTool.Model
 {
     class Message : IMessage
     {
+        public Actor Actor{ get; set; }
         public string Text { get; set; }
         public int Time { get; set; } = 1000;
     }

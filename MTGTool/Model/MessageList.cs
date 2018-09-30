@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MTGTool.Model.Actors;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -11,9 +12,12 @@ namespace MTGTool.Model
     {
         public MessageList() : base()
         {
-            Add(new Message { Text = "アンタップ" });
-            Add(new Message { Text = "アップキープ" });
-            Add(new Message { Text = "ドロー" });
+            var reimu = new Actor("霊夢", "/Image/chara/霊夢01通常.png");
+            var sakuya = new Actor("咲夜", "/Image/chara/sakuya1.png");
+
+            Add(new Message { Text = "アンタップ" , Actor = reimu});
+            Add(new Message { Text = "アップキープ", Actor = sakuya });
+            Add(new Message { Text = "ドロー" , Actor = reimu});
         }
     }
 }
