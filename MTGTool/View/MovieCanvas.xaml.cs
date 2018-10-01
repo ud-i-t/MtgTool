@@ -1,5 +1,9 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MTGTool.Messages;
+using MTGTool.ViewModel;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +27,37 @@ namespace MTGTool.View
         public MovieCanvas()
         {
             InitializeComponent();
+            var vm = DataContext as MainViewModel;
+
+            Messenger.Default.Register<CaptureMessage>(this, _ => Capture() );
+        }
+
+        private void Capture()
+        {
+            canvas.toImage(@"test.png", new PngBitmapEncoder());
+        }
+    }
+
+    public static class CanvasExtensions
+    {
+        public static void toImage(this Canvas canvas, string path, BitmapEncoder encoder)
+        {
+            var size = new Size(canvas.Width, canvas.Height);
+            canvas.Measure(size);
+            canvas.Arrange(new Rect(size));
+
+            var renderBitmap = new RenderTargetBitmap((int)size.Width,       
+                                                      (int)size.Height,      
+                                                      96.0d,                 
+                                                      96.0d,                 
+                                                      PixelFormats.Pbgra32);
+            renderBitmap.Render(canvas);
+
+            using (var os = new FileStream(path, FileMode.Create))
+            {
+                encoder.Frames.Add(BitmapFrame.Create(renderBitmap));
+                encoder.Save(os);
+            }
         }
     }
 }

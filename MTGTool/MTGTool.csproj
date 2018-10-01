@@ -87,6 +87,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Behavior\MainWindowClose.cs" />
+    <Compile Include="Messages\CaptureMessage.cs" />
     <Compile Include="Model\Actors\Actor.cs" />
     <Compile Include="Model\Actors\ActorList.cs" />
     <Compile Include="Model\Actors\IActor.cs" />

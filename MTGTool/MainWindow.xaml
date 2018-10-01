@@ -56,6 +56,9 @@
             <Button Command="{Binding Path=GreetCommand}">
                 <TextBlock Text="再生"></TextBlock>
             </Button>
+            <Button Command="{Binding CaptureCommand}">
+                <TextBlock Text="キャプチャ"></TextBlock>
+            </Button>
         </StackPanel>
         <view:MovieCanvas></view:MovieCanvas>
         <Canvas Margin="{Binding PalletMargin}">

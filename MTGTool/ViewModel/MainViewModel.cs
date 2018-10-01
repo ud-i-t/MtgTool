@@ -1,6 +1,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
+using MTGTool.Messages;
 using MTGTool.Model;
 using MTGTool.Model.Actors;
 using System;
@@ -55,7 +56,7 @@ namespace MTGTool.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel()
+        public MainViewModel() : base(Messenger.Default)
         {
             ////if (IsInDesignMode)
             ////{
@@ -167,6 +168,28 @@ namespace MTGTool.ViewModel
         {
             return true;
         }
+
+
+        private ICommand _captureCommand;
+        public ICommand CaptureCommand
+        {
+            get
+            {
+                return _captureCommand ??
+                    (_captureCommand = new RelayCommand(CaptureCommandExecute, CanCaptureCommandExecute));
+            }
+        }
+
+        private void CaptureCommandExecute()
+        {
+            Messenger.Default.Send(new CaptureMessage());
+        }
+
+        private bool CanCaptureCommandExecute()
+        {
+            return true;
+        }
+
 
         private void ShowPallet()
         {

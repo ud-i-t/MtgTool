@@ -13,12 +13,16 @@
     <UserControl.DataContext>
         <vm:CanvasViewModel />
     </UserControl.DataContext>
-    
-    <Grid Name="canvas" Width="1280" Height="720" HorizontalAlignment="Left" Margin="200,24,0,25">
-        <Image Source="{Binding Path=BackGround}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
-        <Image Source="{Binding Path=MessageWindow}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,-37,0,37" Width="1280"/>
-        <Image Source="{Binding Path=Character}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
-        <TextBlock Text="{Binding Path=Message}" FontSize="30" FontFamily="メイリオ" Background="Transparent" Margin="28,480,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBlock Text="{Binding Path=Name}" FontSize="30" FontFamily="メイリオ" Foreground="Wheat" Background="Transparent" Margin="28,0,0,270" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+
+    <Grid Margin="200,24,0,25">
+        <Canvas Name="canvas" Width="1280" Height="720" HorizontalAlignment="Left">
+            <Grid>
+                <Image Source="{Binding Path=BackGround}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
+                <Image Source="{Binding Path=MessageWindow}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,-37,0,37" Width="1280"/>
+                <Image Source="{Binding Path=Character}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
+                <TextBlock Text="{Binding Path=Message}" FontSize="30" FontFamily="メイリオ" Background="Transparent" Margin="28,480,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBlock Text="{Binding Path=Name}" FontSize="30" FontFamily="メイリオ" Foreground="Wheat" Background="Transparent" Margin="28,0,0,270" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            </Grid>
+        </Canvas>
     </Grid>
 </UserControl>
