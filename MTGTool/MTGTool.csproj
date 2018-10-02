@@ -97,6 +97,8 @@
     <Compile Include="Model\IMassage.cs" />
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\MessageList.cs" />
+    <Compile Include="Model\MovieCommand\IMovieCommand.cs" />
+    <Compile Include="Model\MovieObject\IMovieObject.cs" />
     <Compile Include="Model\SelectedMessage.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Util\BitmapUtil.cs" />
