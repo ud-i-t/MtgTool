@@ -1,5 +1,7 @@
 ﻿using MTGTool.Model;
 using MTGTool.Model.Actors;
+using NAudio.Wave;
+using NAudio.Wave.SampleProviders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +32,20 @@ namespace MTGTool
             Repository.Set(typeof(MessageList), new MessageList());
             Repository.Set(typeof(SelectedMessage), new SelectedMessage());
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            using (var reader1 = new AudioFileReader("cyrf_comeback.mp3"))
+            using (var reader2 = new AudioFileReader("cyrf_crossroad_advanced.mp3"))
+            {
+                var trimmed = new OffsetSampleProvider(reader1)
+                {
+                    DelayBy = TimeSpan.FromSeconds(10),
+                };
+                var mixer = new MixingSampleProvider(new ISampleProvider[] { trimmed, reader2 });
+                WaveFileWriter.CreateWaveFile16("mixed.wav", mixer);
+            }
         }
     }
 }

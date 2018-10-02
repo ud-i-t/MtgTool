@@ -59,6 +59,9 @@
             <Button Command="{Binding CaptureCommand}">
                 <TextBlock Text="キャプチャ"></TextBlock>
             </Button>
+            <Button Click="Button_Click">
+                <TextBlock Text="音声合成"></TextBlock>
+            </Button>
         </StackPanel>
         <view:MovieCanvas></view:MovieCanvas>
         <Canvas Margin="{Binding PalletMargin}">
