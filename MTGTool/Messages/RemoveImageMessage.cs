@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MTGTool.Model.MovieObject
+namespace MTGTool.Messages
 {
-    interface IMovieObject
+    class RemoveImageMessage
     {
     }
 }

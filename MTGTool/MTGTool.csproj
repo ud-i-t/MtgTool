@@ -90,6 +90,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Behavior\MainWindowClose.cs" />
+    <Compile Include="Messages\RemoveImageMessage.cs" />
+    <Compile Include="Messages\AddImageMessage.cs" />
     <Compile Include="Messages\CaptureMessage.cs" />
     <Compile Include="Model\Actors\Actor.cs" />
     <Compile Include="Model\Actors\ActorList.cs" />
@@ -99,7 +101,8 @@
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\MessageList.cs" />
     <Compile Include="Model\MovieCommand\IMovieCommand.cs" />
-    <Compile Include="Model\MovieObject\IMovieObject.cs" />
+    <Compile Include="Model\MovieObjects\MovieObject.cs" />
+    <Compile Include="Model\MovieObjects\MovieObjectList.cs" />
     <Compile Include="Model\SelectedMessage.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Util\BitmapUtil.cs" />

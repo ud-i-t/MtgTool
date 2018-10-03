@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using MTGTool.Model;
+using MTGTool.Model.MovieObjects;
 using MTGTool.Util;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace MTGTool.ViewModel
         public string Name =>_currentMsg.message?.Actor.Name;
         public string Message => _currentMsg.message?.Text;
         public BitmapImage MessageWindow { get; set; }
+        public MovieObjectList Images { get; set; }
 
         private SelectedMessage _currentMsg;
 
@@ -30,6 +32,8 @@ namespace MTGTool.ViewModel
                 RaisePropertyChanged("Message");
                 RaisePropertyChanged("Character");
             });
+
+            Images = Repository.Get(typeof(MovieObjectList)) as MovieObjectList;
         }
 
        
