@@ -94,6 +94,7 @@
     <Compile Include="Model\Actors\Actor.cs" />
     <Compile Include="Model\Actors\ActorList.cs" />
     <Compile Include="Model\Actors\IActor.cs" />
+    <Compile Include="Model\Image.cs" />
     <Compile Include="Model\IMassage.cs" />
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\MessageList.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="ViewModel\EditMessageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MessageListViewModel.cs" />
+    <Compile Include="ViewModel\PictureListViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\EditActor.xaml.cs">
       <DependentUpon>EditActor.xaml</DependentUpon>
@@ -119,6 +121,9 @@
     </Compile>
     <Compile Include="View\MovieCanvas.xaml.cs">
       <DependentUpon>MovieCanvas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PictureListView.xaml.cs">
+      <DependentUpon>PictureListView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -145,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MovieCanvas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PictureListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

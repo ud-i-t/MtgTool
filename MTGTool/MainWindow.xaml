@@ -67,5 +67,6 @@
         <Canvas Margin="{Binding PalletMargin}">
             <ContentControl Content="{Binding Pallet}"></ContentControl>
         </Canvas>
+        <view:PictureListView Height="180" VerticalAlignment="Bottom" Margin="200,0,0,0"/>
     </Grid>
 </Window>
