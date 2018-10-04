@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using MTGTool.Model;
 using MTGTool.Model.MovieObjects;
 using MTGTool.Util;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace MTGTool.ViewModel
@@ -36,6 +38,6 @@ namespace MTGTool.ViewModel
             Images = Repository.Get(typeof(MovieObjectList)) as MovieObjectList;
         }
 
-       
+        
     }
 }
