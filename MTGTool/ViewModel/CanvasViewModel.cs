@@ -38,6 +38,34 @@ namespace MTGTool.ViewModel
             Images = Repository.Get(typeof(MovieObjectList)) as MovieObjectList;
         }
 
-        
+        private ICommand _mouseMoveCommand;
+        public ICommand MouseMoveCommand
+        {
+            get
+            {
+                return _mouseMoveCommand ??
+                    (_mouseMoveCommand = new RelayCommand(MouseMoveExecute, () => true));
+            }
+        }
+
+        private void MouseMoveExecute()
+        {
+            Console.Write("move");
+        }
+
+        private ICommand _mouseUpCommand;
+        public ICommand MouseUpCommand
+        {
+            get
+            {
+                return _mouseUpCommand ??
+                    (_mouseUpCommand = new RelayCommand(MouseUpExecute, () => true));
+            }
+        }
+
+        private void MouseUpExecute()
+        {
+            Console.Write("up");
+        }
     }
 }

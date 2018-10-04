@@ -20,24 +20,20 @@ namespace MTGTool.Model.MovieObjects
             Bitmap = bitmap;
         }
 
-        private ICommand _captureCommand;
-        public ICommand CaptureCommand
+        private ICommand _mouseDownCommand;
+        public ICommand MouseDownCommand
         {
             get
             {
-                return _captureCommand ??
-                    (_captureCommand = new RelayCommand(CaptureCommandExecute, CanCaptureCommandExecute));
+                return _mouseDownCommand ??
+                    (_mouseDownCommand = new RelayCommand(MouseDownExecute, () => true));
             }
         }
 
-        private void CaptureCommandExecute()
-        {
-            Console.Write("hoge");
-        }
 
-        private bool CanCaptureCommandExecute()
+        private void MouseDownExecute()
         {
-            return true;
+            Console.Write("down");
         }
     }
 }

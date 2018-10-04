@@ -19,7 +19,7 @@
     <Grid Margin="200,24,0,25">
         <Canvas Name="canvas" Width="1280" Height="720" HorizontalAlignment="Left">
             <Image Source="{Binding Path=BackGround}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
-            <ItemsControl ItemsSource="{Binding Images}">
+            <ItemsControl Name="Items" ItemsSource="{Binding Images}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
@@ -27,21 +27,23 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Image Source="{Binding Bitmap}">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseDown">
-                                    <i:InvokeCommandAction Command="{Binding CaptureCommand}" CommandParameter="{Binding}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
+                        <Image Source="{Binding Bitmap}" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}">
+                            <Image.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="回転"/>
+                                    <MenuItem Header="複製"/>
+                                    <MenuItem Header="削除"/>
+                                </ContextMenu>
+                            </Image.ContextMenu>
                         </Image>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-                <ItemsControl.ItemContainerStyle>
+                <!--<ItemsControl.ItemContainerStyle>
                     <Style>
                         <Setter Property="Canvas.Top" Value="{Binding Path=X}" />
                         <Setter Property="Canvas.Left" Value="{Binding Path=Y}" />
                     </Style>
-                </ItemsControl.ItemContainerStyle>
+                </ItemsControl.ItemContainerStyle>-->
             </ItemsControl>
             <Image Source="{Binding Path=MessageWindow}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Canvas.Top="420" Width="1280"/>
             <Image Source="{Binding Path=Character}" Canvas.Right="0" Canvas.Bottom="0" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
