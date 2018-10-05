@@ -65,7 +65,10 @@ namespace MTGTool.ViewModel
 
         private void MouseUpExecute()
         {
-            Console.Write("up");
+            var img = Repository.Get(typeof(SelectedObject)) as SelectedObject;
+            if (img.SeletedImg == null) return;
+
+            Images.Add(new MovieObject(img.SeletedImg.Bitmap));
         }
     }
 }

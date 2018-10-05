@@ -18,6 +18,11 @@
 
     <Grid Margin="200,24,0,25">
         <Canvas Name="canvas" Width="1280" Height="720" HorizontalAlignment="Left">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseUp">
+                    <i:InvokeCommandAction Command="{Binding MouseUpCommand}"></i:InvokeCommandAction>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <Image Source="{Binding Path=BackGround}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
             <ItemsControl Name="Items" ItemsSource="{Binding Images}">
                 <ItemsControl.ItemsPanel>

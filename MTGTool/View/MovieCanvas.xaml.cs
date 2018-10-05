@@ -33,38 +33,38 @@ namespace MTGTool.View
             Messenger.Default.Register<CaptureMessage>(this, _ => Capture() );
 
 
-            var mouseDown = Observable.FromEvent<MouseButtonEventHandler, MouseButtonEventArgs>(
-                h => (s, e) => h(e),
-                h => Items.MouseDown += h,
-                h => Items.MouseDown -= h);
+            //var mouseDown = Observable.FromEvent<MouseButtonEventHandler, MouseButtonEventArgs>(
+            //    h => (s, e) => h(e),
+            //    h => Items.MouseDown += h,
+            //    h => Items.MouseDown -= h);
 
-            var mouseMove = Observable.FromEvent<MouseEventHandler, MouseEventArgs>(
-                h => (s, e) => h(e),
-                h => MouseMove += h,
-                h => MouseMove -= h);
+            //var mouseMove = Observable.FromEvent<MouseEventHandler, MouseEventArgs>(
+            //    h => (s, e) => h(e),
+            //    h => MouseMove += h,
+            //    h => MouseMove -= h);
 
-            var mouseUp = Observable.FromEvent<MouseButtonEventHandler, MouseButtonEventArgs>(
-                h => (s, e) => h(e),
-                h => MouseUp += h,
-                h => MouseUp -= h);
+            //var mouseUp = Observable.FromEvent<MouseButtonEventHandler, MouseButtonEventArgs>(
+            //    h => (s, e) => h(e),
+            //    h => MouseUp += h,
+            //    h => MouseUp -= h);
 
-            var dragOffset = new Point();
-            var target = new Image(); 
-            var drag = mouseMove
-                .SkipUntil(mouseDown.Do(e => {
-                    CaptureMouse();
-                    target = e.OriginalSource as Image;
-                    dragOffset = e.GetPosition(target);
-                }))
-                .TakeUntil(mouseUp.Do(_ => ReleaseMouseCapture()))
-                .Repeat();
+            //var dragOffset = new Point();
+            //var target = new Image(); 
+            //var drag = mouseMove
+            //    .SkipUntil(mouseDown.Do(e => {
+            //        CaptureMouse();
+            //        target = e.OriginalSource as Image;
+            //        dragOffset = e.GetPosition(target);
+            //    }))
+            //    .TakeUntil(mouseUp.Do(_ => ReleaseMouseCapture()))
+            //    .Repeat();
 
-            drag.Select(e => e.GetPosition(null))
-                .Subscribe(p => {
-                    target.Margin = new Thickness(p.X - dragOffset.X - target.ActualWidth / 2, p.Y - dragOffset.Y, 0 , 0);
-                    //Canvas.SetLeft(target, p.X - dragOffset.X);
-                    //Canvas.SetTop(target, p.Y - dragOffset.Y);
-                });
+            //drag.Select(e => e.GetPosition(null))
+            //    .Subscribe(p => {
+            //        target.Margin = new Thickness(p.X - dragOffset.X - target.ActualWidth / 2, p.Y - dragOffset.Y, 0 , 0);
+            //        //Canvas.SetLeft(target, p.X - dragOffset.X);
+            //        //Canvas.SetTop(target, p.Y - dragOffset.Y);
+            //    });
         }
 
         private void Capture()

@@ -104,6 +104,7 @@
     <Compile Include="Model\MovieObjects\MovieObject.cs" />
     <Compile Include="Model\MovieObjects\MovieObjectList.cs" />
     <Compile Include="Model\SelectedMessage.cs" />
+    <Compile Include="Model\SelectedObject.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Util\BitmapUtil.cs" />
     <Compile Include="ViewModel\CanvasViewModel.cs" />
