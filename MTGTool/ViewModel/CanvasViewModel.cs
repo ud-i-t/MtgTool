@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MTGTool.Model;
+using MTGTool.Model.Group;
 using MTGTool.Model.MovieObjects;
 using MTGTool.Util;
 using System;
@@ -20,8 +21,7 @@ namespace MTGTool.ViewModel
         public string Name =>_currentMsg.message?.Actor.Name;
         public string Message => _currentMsg.message?.Text;
         public BitmapImage MessageWindow { get; set; }
-        public MovieObjectList Images { get; set; }
-        public SelectedObject SelectedObject { get; private set; }
+        public ObjectGroupList ObjectGroups { get; set; }
 
         private SelectedMessage _currentMsg;
 
@@ -36,31 +36,7 @@ namespace MTGTool.ViewModel
                 RaisePropertyChanged(nameof(Character));
             });
 
-            Images = Repository.Get(typeof(MovieObjectList)) as MovieObjectList;
-            SelectedObject = Repository.Get(typeof(SelectedObject)) as SelectedObject;
-        }
-
-        private ICommand _mouseUpCommand;
-        public ICommand MouseUpCommand
-        {
-            get
-            {
-                return _mouseUpCommand ??
-                    (_mouseUpCommand = new RelayCommand<object>(MouseUpExecute, _ => true));
-            }
-        }
-
-        private void MouseUpExecute(object obj)
-        {
-            var element = (System.Windows.IInputElement)obj;
-            var pos = Mouse.GetPosition(element);
-            var img = SelectedObject?.SeletedImg;
-            if (img == null) return;
-
-            img.X = (int)pos.X;
-            img.Y = (int)pos.Y;
-            Images.Add(img);
-            SelectedObject.SeletedImg = null;
+            ObjectGroups = Repository.Get(typeof(ObjectGroupList)) as ObjectGroupList;
         }
     }
 }

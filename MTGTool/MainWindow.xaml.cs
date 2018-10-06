@@ -1,5 +1,6 @@
 ﻿using MTGTool.Model;
 using MTGTool.Model.Actors;
+using MTGTool.Model.Group;
 using MTGTool.Model.MovieObjects;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
@@ -34,6 +35,7 @@ namespace MTGTool
             Repository.Set(typeof(SelectedObject), new SelectedObject());
             Repository.Set(typeof(MessageList), new MessageList());
             Repository.Set(typeof(MovieObjectList), new MovieObjectList());
+            Repository.Set(typeof(ObjectGroupList), new ObjectGroupList());
             InitializeComponent();
         }
 

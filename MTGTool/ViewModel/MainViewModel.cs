@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MTGTool.Messages;
 using MTGTool.Model;
 using MTGTool.Model.Actors;
+using MTGTool.Model.Group;
 using MTGTool.Model.MovieCommand;
 using MTGTool.Model.MovieObjects;
 using System;
@@ -223,6 +224,9 @@ namespace MTGTool.ViewModel
 
             var list = Repository.Get(typeof(MovieObjectList)) as MovieObjectList;
             list.Add(img);
+
+            var groupList = Repository.Get(typeof(ObjectGroupList)) as ObjectGroupList;
+            groupList.First().Add(img);
 
             var msg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
             var command = new AddObject(img);

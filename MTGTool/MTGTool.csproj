@@ -97,6 +97,8 @@
     <Compile Include="Model\Actors\Actor.cs" />
     <Compile Include="Model\Actors\ActorList.cs" />
     <Compile Include="Model\Actors\IActor.cs" />
+    <Compile Include="Model\Group\ObjectGroupList.cs" />
+    <Compile Include="Model\Group\ObjectGroup.cs" />
     <Compile Include="Model\Image.cs" />
     <Compile Include="Model\IMassage.cs" />
     <Compile Include="Model\Message.cs" />
