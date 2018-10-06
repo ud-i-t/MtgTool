@@ -39,6 +39,7 @@ namespace MTGTool.Model
         public void AddCommand(IMovieCommand command)
         {
             Commands.Add(command);
+            command.Invoke();
         }
 
         public void Invoke()

@@ -82,16 +82,12 @@ namespace MTGTool.ViewModel
         private void GreetCommandExecute()
         {
             var msgList = Repository.Get(typeof(MessageList)) as MessageList;
-            var objList = Repository.Get(typeof(MovieObjectList)) as MovieObjectList;
             var current = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
-
-            objList.Init();
 
             Task.Run(() =>
             {
                 foreach (var m in msgList)
                 {
-                    m.Invoke();
                     current.message = m;
                     Thread.Sleep(m.Time);
                 }

@@ -1,4 +1,5 @@
 ﻿using MTGTool.Model.Actors;
+using MTGTool.Model.MovieObjects;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,6 +20,19 @@ namespace MTGTool.Model
             Add(new Message { Text = "アンタップ" , Actor = reimu});
             Add(new Message { Text = "アップキープ", Actor = sakuya });
             Add(new Message { Text = "ドロー" , Actor = reimu});
+
+            var selectedMsg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
+            selectedMsg.OnChange.Subscribe(msg =>
+            {
+                var objList = Repository.Get(typeof(MovieObjectList)) as MovieObjectList;
+                objList.Init();
+
+                foreach (var m in Items)
+                {
+                    m.Invoke();
+                    if (m == msg) break;
+                }
+            });
         }
     }
 }

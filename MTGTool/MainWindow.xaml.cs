@@ -30,10 +30,10 @@ namespace MTGTool
         {
             //Repository.Set(typeof(ActorList), new ActorList());
             Repository.Load();
-            Repository.Set(typeof(MessageList), new MessageList());
-            Repository.Set(typeof(MovieObjectList), new MovieObjectList());
             Repository.Set(typeof(SelectedMessage), new SelectedMessage());
             Repository.Set(typeof(SelectedObject), new SelectedObject());
+            Repository.Set(typeof(MessageList), new MessageList());
+            Repository.Set(typeof(MovieObjectList), new MovieObjectList());
             InitializeComponent();
         }
 
