@@ -22,12 +22,16 @@
                 <i:EventTrigger EventName="MouseUp">
                     <i:InvokeCommandAction Command="{Binding MouseUpCommand}"></i:InvokeCommandAction>
                 </i:EventTrigger>
+                <i:EventTrigger EventName="MouseMove">
+                    <i:InvokeCommandAction Command="{Binding MouseMoveCommand}" CommandParameter="{Binding ElementName=canvas}"></i:InvokeCommandAction>
+                </i:EventTrigger>
             </i:Interaction.Triggers>
             <Image Source="{Binding Path=BackGround}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
+            
             <ItemsControl Name="Items" ItemsSource="{Binding Images}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                        <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="0"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
@@ -43,17 +47,24 @@
                         </Image>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-                <!--<ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemContainerStyle>
                     <Style>
-                        <Setter Property="Canvas.Top" Value="{Binding Path=X}" />
-                        <Setter Property="Canvas.Left" Value="{Binding Path=Y}" />
+                        <Setter Property="Canvas.Left" Value="{Binding Path=X}" />
+                        <Setter Property="Canvas.Top" Value="{Binding Path=Y}" />
                     </Style>
-                </ItemsControl.ItemContainerStyle>-->
+                </ItemsControl.ItemContainerStyle>
             </ItemsControl>
+            
             <Image Source="{Binding Path=MessageWindow}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Canvas.Top="420" Width="1280"/>
             <Image Source="{Binding Path=Character}" Canvas.Right="0" Canvas.Bottom="0" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
             <TextBlock Text="{Binding Path=Message}" FontSize="30" FontFamily="メイリオ" Background="Transparent" Canvas.Left="28" Canvas.Top="480" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <TextBlock Text="{Binding Path=Name}" FontSize="30" FontFamily="メイリオ" Foreground="Wheat" Background="Transparent" Canvas.Left="28" Canvas.Top="430" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+
+            <Image Source="{Binding SelectedObject.SeletedImg.Bitmap}" VerticalAlignment="Bottom" HorizontalAlignment="Left" 
+                   Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"
+                   Canvas.Top="{Binding SelectedObject.SeletedImg.Y}" Canvas.Left="{Binding SelectedObject.SeletedImg.X}">
+            </Image>
+
         </Canvas>
     </Grid>
 </UserControl>

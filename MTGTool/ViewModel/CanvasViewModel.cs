@@ -21,6 +21,7 @@ namespace MTGTool.ViewModel
         public string Message => _currentMsg.message?.Text;
         public BitmapImage MessageWindow { get; set; }
         public MovieObjectList Images { get; set; }
+        public SelectedObject SelectedObject { get; private set; }
 
         private SelectedMessage _currentMsg;
 
@@ -30,12 +31,14 @@ namespace MTGTool.ViewModel
             MessageWindow = BitmapUtil.GetImage(@"C:\Users\ud\source\repos\MTGTool\MTGTool\bin\Debug\Image\UI\メッセージウインドウ.png");
             _currentMsg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
             _currentMsg.OnChange.Subscribe(_ => {
-                RaisePropertyChanged("Name");
-                RaisePropertyChanged("Message");
-                RaisePropertyChanged("Character");
+                RaisePropertyChanged(nameof(Name));
+                RaisePropertyChanged(nameof(Message));
+                RaisePropertyChanged(nameof(Character));
             });
 
             Images = Repository.Get(typeof(MovieObjectList)) as MovieObjectList;
+            SelectedObject = Repository.Get(typeof(SelectedObject)) as SelectedObject;
+            SelectedObject.OnChange.Subscribe(_ => RaisePropertyChanged(nameof(SelectedObject)));
         }
 
         private ICommand _mouseMoveCommand;
@@ -44,13 +47,20 @@ namespace MTGTool.ViewModel
             get
             {
                 return _mouseMoveCommand ??
-                    (_mouseMoveCommand = new RelayCommand(MouseMoveExecute, () => true));
+                    (_mouseMoveCommand = new RelayCommand<object>(MouseMoveExecute, _ => true));
             }
         }
 
-        private void MouseMoveExecute()
+        private void MouseMoveExecute(object obj)
         {
-            Console.Write("move");
+            var img = SelectedObject?.SeletedImg;
+            if (img == null) return;
+
+            var element = (System.Windows.IInputElement)obj;
+            var pos = Mouse.GetPosition(element);
+            img.X = (int)pos.X;
+            img.Y = (int)pos.Y;
+            RaisePropertyChanged(nameof(SelectedObject));
         }
 
         private ICommand _mouseUpCommand;
@@ -65,10 +75,11 @@ namespace MTGTool.ViewModel
 
         private void MouseUpExecute()
         {
-            var img = Repository.Get(typeof(SelectedObject)) as SelectedObject;
-            if (img.SeletedImg == null) return;
+            var img = SelectedObject?.SeletedImg;
+            if (img == null) return;
 
-            Images.Add(new MovieObject(img.SeletedImg.Bitmap));
+            Images.Add(img);
+            SelectedObject.SeletedImg = null;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MTGTool.Model.MovieObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace MTGTool.Model
         private void MouseDownExecute()
         {
             var selectedObject = Repository.Get(typeof(SelectedObject)) as SelectedObject;
-            selectedObject.SeletedImg = this;
+            selectedObject.SeletedImg = new MovieObject(Bitmap);
         }
     }
 }
