@@ -52,7 +52,7 @@ namespace MTGTool.Model.MovieObjects
             {
                 _angle = value;
                 _onChange.OnNext(this);
-                OnPropertyChanged("Angle");
+                OnPropertyChanged(nameof(Angle));
             }
         }
 
@@ -70,9 +70,23 @@ namespace MTGTool.Model.MovieObjects
             }
         }
 
+        private string _text = "飛行\n絆魂\n警戒";
+        public string Text
+        {
+            get
+            {
+                return _text;
+            }
+            internal set
+            {
+                _text = value;
+                OnPropertyChanged(nameof(Text));
+            }
+        }
+
         public BitmapSource Bitmap { get; private set; }
-        public int CenterX => (int)(Bitmap.Width / 2);
-        public int CenterY => (int)(Bitmap.Height / 2);
+        public int CenterX => (int)(Bitmap.PixelWidth / 2);
+        public int CenterY => (int)(Bitmap.PixelHeight / 2);
 
         private Subject<MovieObject> _onChange = new Subject<MovieObject>();
         public IObservable<MovieObject> OnChange => _onChange.AsObservable();

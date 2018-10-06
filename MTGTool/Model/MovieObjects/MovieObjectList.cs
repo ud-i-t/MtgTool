@@ -12,23 +12,6 @@ namespace MTGTool.Model.MovieObjects
 {
     class MovieObjectList : ObservableCollection<MovieObject>
     {
-        public MovieObjectList()
-        {
-            MemoryStream data = new MemoryStream(File.ReadAllBytes(@"C: \Users\ud\source\repos\MTGTool\MTGTool\bin\Debug\Image\土地\島.png"));
-            WriteableBitmap wbmp = new WriteableBitmap(BitmapFrame.Create(data));
-            data.Close();
-
-            var img = new MovieObject(wbmp) { X = 100, Y = 220 };
-            Add(img);
-
-            data = new MemoryStream(File.ReadAllBytes(@"C: \Users\ud\source\repos\MTGTool\MTGTool\bin\Debug\Image\土地\山.png"));
-            wbmp = new WriteableBitmap(BitmapFrame.Create(data));
-            data.Close();
-
-            var img2 = new MovieObject(wbmp) { X = 180, Y = 240 };
-            Add(img2);
-        }
-
         public void Init()
         {
             foreach(var obj in Items)
