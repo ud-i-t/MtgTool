@@ -78,12 +78,5 @@
             <ContentControl Content="{Binding Pallet}"></ContentControl>
         </Canvas>
         <view:PictureListView Height="180" VerticalAlignment="Bottom" Margin="400,0,0,0"/>
-
-        <Canvas>
-            <Image Source="{Binding SelectedObject.SeletedImg.Bitmap}" VerticalAlignment="Bottom" HorizontalAlignment="Left" 
-                   Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"
-                   Canvas.Top="{Binding SelectedObject.SeletedImg.Y}" Canvas.Left="{Binding SelectedObject.SeletedImg.X}">
-            </Image>
-        </Canvas>
     </Grid>
 </Window>

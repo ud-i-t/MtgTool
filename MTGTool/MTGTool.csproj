@@ -89,6 +89,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behavior\DragAcceptBehavior.cs" />
+    <Compile Include="Behavior\DragStartBehavior.cs" />
     <Compile Include="Behavior\MainWindowClose.cs" />
     <Compile Include="Converter\VisibleConverter.cs" />
     <Compile Include="Messages\RemoveImageMessage.cs" />
@@ -113,6 +115,7 @@
     <Compile Include="Model\SelectedObject.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Util\BitmapUtil.cs" />
+    <Compile Include="Util\CursorInfo.cs" />
     <Compile Include="ViewModel\CanvasViewModel.cs" />
     <Compile Include="ViewModel\EditActorViewModel.cs" />
     <Compile Include="ViewModel\EditMessageViewModel.cs" />

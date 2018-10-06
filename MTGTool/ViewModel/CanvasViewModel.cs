@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MTGTool.Behavior;
 using MTGTool.Model;
 using MTGTool.Model.Group;
 using MTGTool.Model.MovieObjects;
@@ -9,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -27,6 +29,7 @@ namespace MTGTool.ViewModel
 
         public CanvasViewModel()
         {
+
             BackGround = BitmapUtil.GetImage(@"C:\Users\ud\source\repos\MTGTool\MTGTool\bin\Debug\Image\UI\背景.png");
             MessageWindow = BitmapUtil.GetImage(@"C:\Users\ud\source\repos\MTGTool\MTGTool\bin\Debug\Image\UI\メッセージウインドウ.png");
             _currentMsg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
@@ -38,5 +41,7 @@ namespace MTGTool.ViewModel
 
             ObjectGroups = Repository.Get(typeof(ObjectGroupList)) as ObjectGroupList;
         }
+
+        
     }
 }

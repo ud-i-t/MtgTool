@@ -10,6 +10,7 @@
              xmlns:movieObject="clr-namespace:MTGTool.Model.MovieObjects"
              xmlns:conv="clr-namespace:MTGTool.Converter"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:behaviors="clr-namespace:MTGTool.Behavior"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -33,11 +34,16 @@
                 <DataTemplate>
                     <Canvas>
                         <Border BorderBrush="Black" BorderThickness="2" Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}">
-                            <ContentControl Width="{Binding Width}" 
+                            <Canvas Name="innercanvas"
+                            Width="{Binding Width}" 
                             Height="{Binding Height}"
-                            Background="AliceBlue"
-                            ClipToBounds="True">
-                                <ItemsControl Name="Items" ItemsSource="{Binding}">
+                            Background="Transparent"
+                            ClipToBounds="True"
+                            AllowDrop="True">
+                                <i:Interaction.Behaviors>
+                                    <behaviors:DragAcceptBehavior Description="{Binding Description}" />
+                                </i:Interaction.Behaviors>
+                                <ItemsControl Name="Items" ItemsSource="{Binding MovieObjects}">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <Canvas/>
@@ -73,14 +79,8 @@
                                             </Canvas>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
-                                    <ItemsControl.ItemContainerStyle>
-                                        <Style>
-                                            <Setter Property="Canvas.Left" Value="{Binding Path=X}" />
-                                            <Setter Property="Canvas.Top" Value="{Binding Path=Y}" />
-                                        </Style>
-                                    </ItemsControl.ItemContainerStyle>
                                 </ItemsControl>
-                            </ContentControl>
+                            </Canvas>
                         </Border>
                     </Canvas>
                 </DataTemplate>

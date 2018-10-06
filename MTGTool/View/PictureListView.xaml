@@ -7,15 +7,12 @@
              xmlns:model="clr-namespace:MTGTool.Model"
              xmlns:local="clr-namespace:MTGTool.View"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:behavior="clr-namespace:MTGTool.Behavior"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
         <vm:PictureListViewModel></vm:PictureListViewModel>
     </UserControl.DataContext>
-
-    <UserControl.Resources>
-
-    </UserControl.Resources>
 
     <ScrollViewer>
         <ItemsControl ItemsSource="{Binding Pictures}" Width="1000">
@@ -27,11 +24,14 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate DataType="{x:Type model:Image}">
                     <Image Source="{Binding Bitmap}" MinHeight="150" MaxWidth="100">
-                        <i:Interaction.Triggers>
+                        <i:Interaction.Behaviors>
+                            <behavior:DragStartBehavior AllowedEffects="Copy" DragDropData="{Binding}" />
+                        </i:Interaction.Behaviors>
+                        <!--<i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseLeftButtonDown">
                                 <i:InvokeCommandAction Command="{Binding MouseDownCommand}"></i:InvokeCommandAction>
                             </i:EventTrigger>
-                        </i:Interaction.Triggers>
+                        </i:Interaction.Triggers>-->
                     </Image>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

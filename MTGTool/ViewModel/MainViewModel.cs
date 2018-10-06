@@ -179,61 +179,6 @@ namespace MTGTool.ViewModel
             }
         }
 
-
-        private ICommand _mouseMoveCommand;
-        public ICommand MouseMoveCommand
-        {
-            get
-            {
-                return _mouseMoveCommand ??
-                    (_mouseMoveCommand = new RelayCommand<object>(MouseMoveExecute, _ => true));
-            }
-        }
-
-        private void MouseMoveExecute(object obj)
-        {
-            var img = SelectedObject?.SeletedImg;
-            if (img == null) return;
-
-            var element = (System.Windows.IInputElement)obj;
-            var pos = Mouse.GetPosition(element);
-            img.X = (int)pos.X;
-            img.Y = (int)pos.Y;
-        }
-
-        private ICommand _mouseUpCommand;
-        public ICommand MouseUpCommand
-        {
-            get
-            {
-                return _mouseUpCommand ??
-                    (_mouseUpCommand = new RelayCommand<object>(MouseUpExecute, _ => true));
-            }
-        }
-
-        private void MouseUpExecute(object obj)
-        {
-            var img = SelectedObject?.SeletedImg;
-            SelectedObject.SeletedImg = null;
-            if (img == null) return;
-
-            var element = (System.Windows.IInputElement)obj;
-            var pos = Mouse.GetPosition(element);
-            img.X = (int)pos.X;
-            img.Y = (int)pos.Y;
-
-            var list = Repository.Get(typeof(MovieObjectList)) as MovieObjectList;
-            list.Add(img);
-
-            var groupList = Repository.Get(typeof(ObjectGroupList)) as ObjectGroupList;
-            groupList.First().Add(img);
-
-            var msg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
-            var command = new AddObject(img);
-            command.Invoke();
-            msg.message.AddCommand(command);
-        }
-
         private void CaptureCommandExecute()
         {
             Messenger.Default.Send(new CaptureMessage());
