@@ -40,5 +40,13 @@ namespace MTGTool.Model
         {
             Commands.Add(command);
         }
+
+        public void Invoke()
+        {
+            foreach(var c in Commands)
+            {
+                c.Invoke();
+            }
+        }
     }
 }

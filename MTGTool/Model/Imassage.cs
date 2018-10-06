@@ -16,5 +16,6 @@ namespace MTGTool.Model
         IActor Actor { get; }
         IObservable<IMessage> OnChange { get; }
         void AddCommand(IMovieCommand command);
+        void Invoke();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MTGTool.Model.MovieCommand;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -56,7 +57,8 @@ namespace MTGTool.Model.MovieObjects
         }
 
         private bool _visible;
-        public bool Visible {
+        public bool Visible
+        {
             get
             {
                 return _visible;
@@ -98,19 +100,17 @@ namespace MTGTool.Model.MovieObjects
 
 
         private ICommand _rotateCommand;
-
-
         public ICommand RotateCommand
         {
             get
             {
                 return _rotateCommand ??
-                    (_rotateCommand = new RelayCommand(() =>
+                    (_rotateCommand = new RelayCommand<object>(angle => 
                     {
-                        Angle += 90;
-                        if (Angle >= 360) Angle -= 360;
+                        var selectedMsg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
+                        selectedMsg.message.AddCommand(new RotateObject(this, int.Parse(angle.ToString())));
                     }
-                    , () => true));
+                    , _ => true));
             }
         }
 

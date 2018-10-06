@@ -28,5 +28,14 @@ namespace MTGTool.Model.MovieObjects
             var img2 = new MovieObject(wbmp) { X = 180, Y = 240 };
             Add(img2);
         }
+
+        public void Init()
+        {
+            foreach(var obj in Items)
+            {
+                obj.Visible = false;
+                obj.Angle = 0;
+            }
+        }
     }
 }

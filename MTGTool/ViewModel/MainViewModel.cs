@@ -81,17 +81,21 @@ namespace MTGTool.ViewModel
         // 挨拶コマンドの実行。
         private void GreetCommandExecute()
         {
-            var list = Repository.Get(typeof(MessageList)) as MessageList;
+            var msgList = Repository.Get(typeof(MessageList)) as MessageList;
+            var objList = Repository.Get(typeof(MovieObjectList)) as MovieObjectList;
             var current = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
+
+            objList.Init();
 
             Task.Run(() =>
             {
-                foreach (var m in list)
+                foreach (var m in msgList)
                 {
+                    m.Invoke();
                     current.message = m;
                     Thread.Sleep(m.Time);
                 }
-                current.message = list.First();
+                current.message = msgList.First();
             });
         }
 
