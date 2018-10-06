@@ -16,55 +16,39 @@
         <vm:CanvasViewModel />
     </UserControl.DataContext>
 
-    <Grid Margin="200,24,0,25">
-        <Canvas Name="canvas" Width="1280" Height="720" HorizontalAlignment="Left">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="MouseUp">
-                    <i:InvokeCommandAction Command="{Binding MouseUpCommand}"></i:InvokeCommandAction>
-                </i:EventTrigger>
-                <i:EventTrigger EventName="MouseMove">
-                    <i:InvokeCommandAction Command="{Binding MouseMoveCommand}" CommandParameter="{Binding ElementName=canvas}"></i:InvokeCommandAction>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-            <Image Source="{Binding Path=BackGround}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
-            
-            <ItemsControl Name="Items" ItemsSource="{Binding Images}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="0"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Image Source="{Binding Bitmap}" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}">
-                            <Image.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="回転"/>
-                                    <MenuItem Header="複製"/>
-                                    <MenuItem Header="削除"/>
-                                </ContextMenu>
-                            </Image.ContextMenu>
-                        </Image>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-                <ItemsControl.ItemContainerStyle>
-                    <Style>
-                        <Setter Property="Canvas.Left" Value="{Binding Path=X}" />
-                        <Setter Property="Canvas.Top" Value="{Binding Path=Y}" />
-                    </Style>
-                </ItemsControl.ItemContainerStyle>
-            </ItemsControl>
-            
-            <Image Source="{Binding Path=MessageWindow}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Canvas.Top="420" Width="1280"/>
-            <Image Source="{Binding Path=Character}" Canvas.Right="0" Canvas.Bottom="0" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
-            <TextBlock Text="{Binding Path=Message}" FontSize="30" FontFamily="メイリオ" Background="Transparent" Canvas.Left="28" Canvas.Top="480" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <TextBlock Text="{Binding Path=Name}" FontSize="30" FontFamily="メイリオ" Foreground="Wheat" Background="Transparent" Canvas.Left="28" Canvas.Top="430" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+    <Canvas Name="canvas" Width="1280" Height="720" HorizontalAlignment="Left" VerticalAlignment="Top" ClipToBounds="True">
+        <Image Source="{Binding Path=BackGround}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
 
-            <Image Source="{Binding SelectedObject.SeletedImg.Bitmap}" VerticalAlignment="Bottom" HorizontalAlignment="Left" 
-                   Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"
-                   Canvas.Top="{Binding SelectedObject.SeletedImg.Y}" Canvas.Left="{Binding SelectedObject.SeletedImg.X}">
-            </Image>
+        <ItemsControl Name="Items" ItemsSource="{Binding Images}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="0"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding Bitmap}" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}">
+                        <Image.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="回転"/>
+                                <MenuItem Header="複製"/>
+                                <MenuItem Header="削除"/>
+                            </ContextMenu>
+                        </Image.ContextMenu>
+                    </Image>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Canvas.Left" Value="{Binding Path=X}" />
+                    <Setter Property="Canvas.Top" Value="{Binding Path=Y}" />
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ItemsControl>
 
-        </Canvas>
-    </Grid>
+        <Image Source="{Binding Path=MessageWindow}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Canvas.Top="420" Width="1280"/>
+        <Image Source="{Binding Path=Character}" Canvas.Right="0" Canvas.Bottom="0" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
+        <TextBlock Text="{Binding Path=Message}" FontSize="30" FontFamily="メイリオ" Background="Transparent" Canvas.Left="28" Canvas.Top="480" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock Text="{Binding Path=Name}" FontSize="30" FontFamily="メイリオ" Foreground="Wheat" Background="Transparent" Canvas.Left="28" Canvas.Top="430" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+    </Canvas>
 </UserControl>

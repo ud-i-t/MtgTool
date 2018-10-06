@@ -25,14 +25,25 @@ namespace MTGTool.Model
             get
             {
                 return _mouseDownCommand ??
-                    (_mouseDownCommand = new RelayCommand(MouseDownExecute, () => true));
+                    (_mouseDownCommand = new RelayCommand(MouseDownExecute, () =>
+                    {
+                        var selectedObject = Repository.Get(typeof(SelectedObject)) as SelectedObject;
+                        return selectedObject.SeletedImg == null;
+                    }));
             }
         }
 
         private void MouseDownExecute()
         {
+
             var selectedObject = Repository.Get(typeof(SelectedObject)) as SelectedObject;
-            selectedObject.SeletedImg = new MovieObject(Bitmap);
+            var pos = Mouse.GetPosition(null);
+
+            selectedObject.SeletedImg = new MovieObject(Bitmap)
+            {
+                X = (int)pos.X,
+                Y = (int)pos.Y,
+            };
         }
     }
 }

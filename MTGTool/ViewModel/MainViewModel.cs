@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MTGTool.Messages;
 using MTGTool.Model;
 using MTGTool.Model.Actors;
+using MTGTool.Model.MovieObjects;
 using System;
 using System.Linq;
 using System.Threading;
@@ -25,7 +26,7 @@ namespace MTGTool.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class MainViewModel : ViewModelBase, IDisposable
+    class MainViewModel : ViewModelBase, IDisposable
     {
         public Thickness _palletMargin = new Thickness(1600, 0, 0, -10);
         public Thickness PalletMargin {
@@ -53,19 +54,15 @@ namespace MTGTool.ViewModel
             }
         }
 
+        public SelectedObject SelectedObject { get; private set; }
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel() : base(Messenger.Default)
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+            SelectedObject = Repository.Get(typeof(SelectedObject)) as SelectedObject;
+            SelectedObject.OnChange.Subscribe(_ => RaisePropertyChanged(nameof(SelectedObject)));
         }
 
         private ICommand _greetCommand;
@@ -178,6 +175,53 @@ namespace MTGTool.ViewModel
                 return _captureCommand ??
                     (_captureCommand = new RelayCommand(CaptureCommandExecute, CanCaptureCommandExecute));
             }
+        }
+
+
+        private ICommand _mouseMoveCommand;
+        public ICommand MouseMoveCommand
+        {
+            get
+            {
+                return _mouseMoveCommand ??
+                    (_mouseMoveCommand = new RelayCommand<object>(MouseMoveExecute, _ => true));
+            }
+        }
+
+        private void MouseMoveExecute(object obj)
+        {
+            var img = SelectedObject?.SeletedImg;
+            if (img == null) return;
+
+            var element = (System.Windows.IInputElement)obj;
+            var pos = Mouse.GetPosition(element);
+            img.X = (int)pos.X;
+            img.Y = (int)pos.Y;
+        }
+
+        private ICommand _mouseUpCommand;
+        public ICommand MouseUpCommand
+        {
+            get
+            {
+                return _mouseUpCommand ??
+                    (_mouseUpCommand = new RelayCommand<object>(MouseUpExecute, _ => true));
+            }
+        }
+
+        private void MouseUpExecute(object obj)
+        {
+            var img = SelectedObject?.SeletedImg;
+            SelectedObject.SeletedImg = null;
+            if (img == null) return;
+
+            var element = (System.Windows.IInputElement)obj;
+            var pos = Mouse.GetPosition(element);
+            img.X = (int)pos.X;
+            img.Y = (int)pos.Y;
+
+            var list = Repository.Get(typeof(MovieObjectList)) as MovieObjectList;
+            list.Add(img);
         }
 
         private void CaptureCommandExecute()

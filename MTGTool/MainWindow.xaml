@@ -11,7 +11,7 @@
         xmlns:behavior="clr-namespace:MTGTool.Behavior"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1600"
+        Title="MainWindow" Height="1000" Width="1600"
         WindowStyle="SingleBorderWindow">
 
     <Window.DataContext>
@@ -20,7 +20,15 @@
     <i:Interaction.Behaviors>
         <behavior:MainWindowClose/>
     </i:Interaction.Behaviors>
-    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseLeftButtonUp">
+            <i:InvokeCommandAction Command="{Binding MouseUpCommand}" CommandParameter="{Binding ElementName=canvas}"></i:InvokeCommandAction>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="MouseMove">
+            <i:InvokeCommandAction Command="{Binding MouseMoveCommand}"></i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:EditMessageViewModel}">
             <view:EditMessage HorizontalAlignment="Right"/>
@@ -63,10 +71,19 @@
                 <TextBlock Text="音声合成"></TextBlock>
             </Button>
         </StackPanel>
-        <view:MovieCanvas></view:MovieCanvas>
+        <Grid Margin="200, 25, 25, 0">
+            <view:MovieCanvas x:Name="canvas"></view:MovieCanvas>
+        </Grid>
         <Canvas Margin="{Binding PalletMargin}">
             <ContentControl Content="{Binding Pallet}"></ContentControl>
         </Canvas>
-        <view:PictureListView Height="180" VerticalAlignment="Bottom" Margin="200,0,0,0"/>
+        <view:PictureListView Height="180" VerticalAlignment="Bottom" Margin="400,0,0,0"/>
+
+        <Canvas>
+            <Image Source="{Binding SelectedObject.SeletedImg.Bitmap}" VerticalAlignment="Bottom" HorizontalAlignment="Left" 
+                   Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"
+                   Canvas.Top="{Binding SelectedObject.SeletedImg.Y}" Canvas.Left="{Binding SelectedObject.SeletedImg.X}">
+            </Image>
+        </Canvas>
     </Grid>
 </Window>
