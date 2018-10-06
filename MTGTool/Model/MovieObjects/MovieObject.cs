@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
@@ -11,7 +12,7 @@ using System.Windows.Media.Imaging;
 
 namespace MTGTool.Model.MovieObjects
 {
-    class MovieObject
+    class MovieObject : INotifyPropertyChanged
     {
         private int _x;
         public int X
@@ -50,11 +51,12 @@ namespace MTGTool.Model.MovieObjects
             {
                 _angle = value;
                 _onChange.OnNext(this);
+                OnPropertyChanged("Angle");
             }
         }
         public BitmapSource Bitmap { get; private set; }
-        public int CenterX => (int)(X + Bitmap.Width / 2);
-        public int CenterY => (int)(Y + Bitmap.Height / 2);
+        public int CenterX => (int)(Bitmap.Width / 2);
+        public int CenterY => (int)(Bitmap.Height / 2);
 
         private Subject<MovieObject> _onChange = new Subject<MovieObject>();
         public IObservable<MovieObject> OnChange => _onChange.AsObservable();
@@ -82,13 +84,27 @@ namespace MTGTool.Model.MovieObjects
 
 
         private ICommand _rotateCommand;
+
+
         public ICommand RotateCommand
         {
             get
             {
                 return _rotateCommand ??
-                    (_rotateCommand = new RelayCommand(() => Angle = 90, () => true));
+                    (_rotateCommand = new RelayCommand(() =>
+                    {
+                        Angle += 90;
+                        if (Angle >= 360) Angle -= 360;
+                    }
+                    , () => true));
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

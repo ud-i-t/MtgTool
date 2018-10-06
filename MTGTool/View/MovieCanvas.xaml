@@ -31,7 +31,7 @@
                            Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" 
                            Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}">
                         <Image.RenderTransform>
-                            <RotateTransform CenterX="{Binding Source.CenterX}" CenterY="{Binding Source.CenterY}" Angle="{Binding Angle}"/>
+                            <RotateTransform CenterX="{Binding CenterX}" CenterY="{Binding CenterY}" Angle="{Binding Angle}"/>
                         </Image.RenderTransform>
                         <Image.ContextMenu>
                             <ContextMenu>
