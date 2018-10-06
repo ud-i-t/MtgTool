@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MTGTool.Messages;
 using MTGTool.Model;
 using MTGTool.Model.Actors;
+using MTGTool.Model.MovieCommand;
 using MTGTool.Model.MovieObjects;
 using System;
 using System.Linq;
@@ -222,6 +223,11 @@ namespace MTGTool.ViewModel
 
             var list = Repository.Get(typeof(MovieObjectList)) as MovieObjectList;
             list.Add(img);
+
+            var msg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
+            var command = new AddObject(img);
+            command.Invoke();
+            msg.message.AddCommand(command);
         }
 
         private void CaptureCommandExecute()

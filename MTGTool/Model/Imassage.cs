@@ -1,4 +1,5 @@
 ﻿using MTGTool.Model.Actors;
+using MTGTool.Model.MovieCommand;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace MTGTool.Model
         int AutoTime { get; }
         IActor Actor { get; }
         IObservable<IMessage> OnChange { get; }
+        void AddCommand(IMovieCommand command);
     }
 }

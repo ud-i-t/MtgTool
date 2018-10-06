@@ -16,10 +16,9 @@
         <DataTemplate DataType="{x:Type model:Message}">
             <StackPanel>
                 <TextBlock Text="{Binding Path=Text}" DockPanel.Dock="Left"/>
-                <WrapPanel DockPanel.Dock="Left">
-                    <TextBlock Text="{Binding Path=Time}" />
-                    <TextBlock Text="ミリ秒" />
-                </WrapPanel>
+                <ListBox ItemsSource="{Binding Commands}">
+                    
+                </ListBox>
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>

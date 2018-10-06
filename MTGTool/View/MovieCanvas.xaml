@@ -8,6 +8,7 @@
              xmlns:view="clr-namespace:MTGTool.View"
              xmlns:model="clr-namespace:MTGTool.Model"
              xmlns:movieObject="clr-namespace:MTGTool.Model.MovieObjects"
+             xmlns:conv="clr-namespace:MTGTool.Converter"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -15,6 +16,10 @@
     <UserControl.DataContext>
         <vm:CanvasViewModel />
     </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <conv:VisibleConverter x:Key="visibleConverter"></conv:VisibleConverter>
+    </UserControl.Resources>
 
     <Canvas Name="canvas" Width="1280" Height="720" HorizontalAlignment="Left" VerticalAlignment="Top" ClipToBounds="True">
         <Image Source="{Binding Path=BackGround}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
@@ -29,7 +34,8 @@
                 <DataTemplate>
                     <Image Source="{Binding Bitmap}" 
                            Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" 
-                           Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}">
+                           Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"
+                           Visibility="{Binding Visible, Converter={StaticResource visibleConverter}}">
                         <Image.RenderTransform>
                             <RotateTransform CenterX="{Binding CenterX}" CenterY="{Binding CenterY}" Angle="{Binding Angle}"/>
                         </Image.RenderTransform>

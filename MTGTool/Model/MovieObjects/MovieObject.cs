@@ -54,6 +54,20 @@ namespace MTGTool.Model.MovieObjects
                 OnPropertyChanged("Angle");
             }
         }
+
+        private bool _visible;
+        public bool Visible {
+            get
+            {
+                return _visible;
+            }
+            internal set
+            {
+                _visible = value;
+                OnPropertyChanged(nameof(Visible));
+            }
+        }
+
         public BitmapSource Bitmap { get; private set; }
         public int CenterX => (int)(Bitmap.Width / 2);
         public int CenterY => (int)(Bitmap.Height / 2);
@@ -99,6 +113,7 @@ namespace MTGTool.Model.MovieObjects
                     , () => true));
             }
         }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 

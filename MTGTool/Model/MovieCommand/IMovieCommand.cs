@@ -8,5 +8,6 @@ namespace MTGTool.Model.MovieCommand
 {
     interface IMovieCommand
     {
+        void Invoke();
     }
 }

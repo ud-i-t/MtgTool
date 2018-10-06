@@ -33,6 +33,7 @@ namespace MTGTool.ViewModel
         {
             MessageList = Repository.Get(typeof(MessageList)) as MessageList;
             SelectedMessage = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
+            SelectedMessage.message = MessageList.First();
         }
     }
 }
