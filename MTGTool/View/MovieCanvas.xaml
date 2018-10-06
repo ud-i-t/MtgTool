@@ -44,7 +44,7 @@
                                 <MenuItem Header="右回転" Command="{Binding RotateCommand}" CommandParameter="90"/>
                                 <MenuItem Header="左回転" Command="{Binding RotateCommand}" CommandParameter="-90"/>
                                 <MenuItem Header="複製"/>
-                                <MenuItem Header="削除"/>
+                                <MenuItem Header="削除" Command="{Binding RemoveCommand}"/>
                             </ContextMenu>
                         </Image.ContextMenu>
                     </Image>

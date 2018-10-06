@@ -101,6 +101,7 @@
     <Compile Include="Model\IMassage.cs" />
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\MessageList.cs" />
+    <Compile Include="Model\MovieCommand\RemoveObject.cs" />
     <Compile Include="Model\MovieCommand\RotateObject.cs" />
     <Compile Include="Model\MovieCommand\AddObject.cs" />
     <Compile Include="Model\MovieCommand\IMovieCommand.cs" />

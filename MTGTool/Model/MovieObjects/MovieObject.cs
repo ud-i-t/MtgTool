@@ -76,6 +76,7 @@ namespace MTGTool.Model.MovieObjects
 
         private Subject<MovieObject> _onChange = new Subject<MovieObject>();
         public IObservable<MovieObject> OnChange => _onChange.AsObservable();
+        private SelectedMessage _selectedMsg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
 
         public MovieObject(BitmapSource bitmap)
         {
@@ -107,13 +108,25 @@ namespace MTGTool.Model.MovieObjects
                 return _rotateCommand ??
                     (_rotateCommand = new RelayCommand<object>(angle => 
                     {
-                        var selectedMsg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
-                        selectedMsg.message.AddCommand(new RotateObject(this, int.Parse(angle.ToString())));
+                        _selectedMsg.message.AddCommand(new RotateObject(this, int.Parse(angle.ToString())));
                     }
                     , _ => true));
             }
         }
 
+        private ICommand _removeCommand;
+        public ICommand RemoveCommand
+        {
+            get
+            {
+                return _removeCommand ??
+                    (_removeCommand = new RelayCommand<object>(angle =>
+                    {
+                        _selectedMsg.message.AddCommand(new RemoveObject(this));
+                    }
+                    , _ => true));
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
