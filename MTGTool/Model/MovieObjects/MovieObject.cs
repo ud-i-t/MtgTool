@@ -39,7 +39,22 @@ namespace MTGTool.Model.MovieObjects
                 _onChange.OnNext(this);
             }
         }
+        private int _angle;
+        public int Angle
+        {
+            get
+            {
+                return _angle;
+            }
+            set
+            {
+                _angle = value;
+                _onChange.OnNext(this);
+            }
+        }
         public BitmapSource Bitmap { get; private set; }
+        public int CenterX => (int)(X + Bitmap.Width / 2);
+        public int CenterY => (int)(Y + Bitmap.Height / 2);
 
         private Subject<MovieObject> _onChange = new Subject<MovieObject>();
         public IObservable<MovieObject> OnChange => _onChange.AsObservable();
@@ -47,6 +62,7 @@ namespace MTGTool.Model.MovieObjects
         public MovieObject(BitmapSource bitmap)
         {
             Bitmap = bitmap;
+            Angle = 0;
         }
 
         private ICommand _mouseDownCommand;
@@ -59,10 +75,20 @@ namespace MTGTool.Model.MovieObjects
             }
         }
 
-
         private void MouseDownExecute()
         {
             Console.Write("down");
+        }
+
+
+        private ICommand _rotateCommand;
+        public ICommand RotateCommand
+        {
+            get
+            {
+                return _rotateCommand ??
+                    (_rotateCommand = new RelayCommand(() => Angle = 90, () => true));
+            }
         }
     }
 }

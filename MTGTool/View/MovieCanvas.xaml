@@ -27,10 +27,15 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Image Source="{Binding Bitmap}" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}">
+                    <Image Source="{Binding Bitmap}" 
+                           Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" 
+                           Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}">
+                        <Image.RenderTransform>
+                            <RotateTransform CenterX="{Binding Source.CenterX}" CenterY="{Binding Source.CenterY}" Angle="{Binding Angle}"/>
+                        </Image.RenderTransform>
                         <Image.ContextMenu>
                             <ContextMenu>
-                                <MenuItem Header="回転"/>
+                                <MenuItem Header="回転" Command="{Binding RotateCommand}"/>
                                 <MenuItem Header="複製"/>
                                 <MenuItem Header="削除"/>
                             </ContextMenu>
