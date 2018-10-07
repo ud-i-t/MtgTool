@@ -67,16 +67,26 @@
                                                             <RotateTransform CenterX="{Binding CenterX}" CenterY="{Binding CenterY}" Angle="{Binding Angle}"/>
                                                         </Image.LayoutTransform>
                                                     </Image>
-                                                    <StackPanel VerticalAlignment="Center" >
-                                                        <view:OutlineText Text="{Binding Text}" FontSize="100" FontWeight="Black" FontFamily="MigMix 1M" TextAlignment="Center" StrokeThickness="10" Stroke="White" Fill="Black"/>
-                                                        <view:OutlineText Text="{Binding Text}" FontSize="100" FontWeight="Black" FontFamily="MigMix 1M" TextAlignment="Center" StrokeThickness="10" Stroke="White" Fill="Black"/>
-                                                    </StackPanel>
+                                                    <ItemsControl ItemsSource="{Binding DisplayText}">
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <StackPanel VerticalAlignment="Center"/>
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <view:OutlineText Text="{Binding}" FontSize="100" FontWeight="Black" FontFamily="MigMix 1M" TextAlignment="Center" StrokeThickness="10" Stroke="White" Fill="Black"/>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
                                                     <Grid.ContextMenu>
                                                         <ContextMenu>
                                                             <MenuItem Header="右回転" Command="{Binding RotateCommand}" CommandParameter="90"/>
-                                                        <MenuItem Header="左回転" Command="{Binding RotateCommand}" CommandParameter="-90"/>
-                                                        <MenuItem Header="複製"/>
-                                                        <MenuItem Header="削除" Command="{Binding RemoveCommand}"/>
+                                                            <MenuItem Header="左回転" Command="{Binding RotateCommand}" CommandParameter="-90"/>
+                                                            <MenuItem Header="上下反転" Command="{Binding RotateCommand}" CommandParameter="180"/>
+                                                            <MenuItem Header="テキストの追加" Command="{Binding TextChangeCommand}"/>
+                                                            <MenuItem Header="複製"/>
+                                                            <MenuItem Header="削除" Command="{Binding RemoveCommand}"/>
                                                         </ContextMenu>
                                                         </Grid.ContextMenu>
                                                 </Grid>

@@ -92,6 +92,7 @@
     <Compile Include="Behavior\DragAcceptBehavior.cs" />
     <Compile Include="Behavior\DragStartBehavior.cs" />
     <Compile Include="Behavior\MainWindowClose.cs" />
+    <Compile Include="Converter\ReverseBoolConverter.cs" />
     <Compile Include="Converter\VisibleConverter.cs" />
     <Compile Include="Messages\RemoveImageMessage.cs" />
     <Compile Include="Messages\AddImageMessage.cs" />
@@ -113,11 +114,13 @@
     <Compile Include="Model\MovieObjects\MovieObjectList.cs" />
     <Compile Include="Model\SelectedMessage.cs" />
     <Compile Include="Model\SelectedObject.cs" />
+    <Compile Include="Model\SelectedPallet.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Util\BitmapUtil.cs" />
     <Compile Include="Util\CursorInfo.cs" />
     <Compile Include="ViewModel\CanvasViewModel.cs" />
     <Compile Include="ViewModel\EditActorViewModel.cs" />
+    <Compile Include="ViewModel\EditCardTextViewModel.cs" />
     <Compile Include="ViewModel\EditGroupViewModel.cs" />
     <Compile Include="ViewModel\EditMessageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -126,6 +129,9 @@
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\EditActor.xaml.cs">
       <DependentUpon>EditActor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditCardText.xaml.cs">
+      <DependentUpon>EditCardText.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditGroup.xaml.cs">
       <DependentUpon>EditGroup.xaml</DependentUpon>
@@ -156,6 +162,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\EditActor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditCardText.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

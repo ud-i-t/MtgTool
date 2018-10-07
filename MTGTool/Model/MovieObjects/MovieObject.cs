@@ -1,7 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MTGTool.Model.MovieCommand;
+using MTGTool.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Reactive.Linq;
@@ -77,16 +79,22 @@ namespace MTGTool.Model.MovieObjects
             {
                 return _text;
             }
-            internal set
+            set
             {
                 _text = value;
-                OnPropertyChanged(nameof(Text));
+                DisplayText.Clear();
+                foreach (var t in _text.Split('\n'))
+                {
+                    DisplayText.Add(t);
+                }
             }
         }
 
+        public ObservableCollection<string> DisplayText { get; } = new ObservableCollection<string>();
+
         public BitmapSource Bitmap { get; private set; }
-        public int CenterX => (int)(Bitmap.PixelWidth / 2);
-        public int CenterY => (int)(Bitmap.PixelHeight / 2);
+        public int CenterX => Bitmap.PixelWidth / 2;
+        public int CenterY => Bitmap.PixelHeight / 2;
 
         private Subject<MovieObject> _onChange = new Subject<MovieObject>();
         public IObservable<MovieObject> OnChange => _onChange.AsObservable();
@@ -106,7 +114,11 @@ namespace MTGTool.Model.MovieObjects
                 return _textChangeCommand ??
                     (_textChangeCommand = new RelayCommand<object>(angle =>
                     {
-                        // TODO:メッセージ編集窓を開く
+                        var selectedObj = Repository.Get(typeof(SelectedObject)) as SelectedObject;
+                        selectedObj.SeletedImg = this;
+
+                        var pallet = Repository.Get(typeof(SelectedPallet)) as SelectedPallet;
+                        pallet.Pallet = new EditCardTextViewModel();
                     }
                     , _ => true));
             }
@@ -118,7 +130,7 @@ namespace MTGTool.Model.MovieObjects
             get
             {
                 return _rotateCommand ??
-                    (_rotateCommand = new RelayCommand<object>(angle => 
+                    (_rotateCommand = new RelayCommand<object>(angle =>
                     {
                         _selectedMsg.message.AddCommand(new RotateObject(this, int.Parse(angle.ToString())));
                     }

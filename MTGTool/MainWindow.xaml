@@ -39,6 +39,9 @@
         <DataTemplate DataType="{x:Type vm:EditGroupViewModel}">
             <view:EditGroup HorizontalAlignment="Right"/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:EditCardTextViewModel}">
+            <view:EditCardText HorizontalAlignment="Right"/>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>
@@ -82,7 +85,7 @@
             <view:MovieCanvas x:Name="canvas"></view:MovieCanvas>
         </Grid>
         <Canvas Margin="{Binding PalletMargin}">
-            <ContentControl Content="{Binding Pallet}"></ContentControl>
+            <ContentControl Content="{Binding Pallet.Pallet}"></ContentControl>
         </Canvas>
         <view:PictureListView Height="180" VerticalAlignment="Bottom" Margin="400,0,0,0"/>
     </Grid>

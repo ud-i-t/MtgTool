@@ -42,34 +42,18 @@ namespace MTGTool.ViewModel
             }
         }
 
-        private ViewModelBase _pallet;
-        public ViewModelBase Pallet
-        {
-            get
-            {
-                return _pallet;
-            }
-            set
-            {
-                _pallet = value;
-                RaisePropertyChanged("Pallet");
-            }
-        }
-
-        public SelectedObject SelectedObject { get; private set; }
+        public SelectedPallet Pallet { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel() : base(Messenger.Default)
         {
-            SelectedObject = Repository.Get(typeof(SelectedObject)) as SelectedObject;
-            SelectedObject.OnChange.Subscribe(_ => RaisePropertyChanged(nameof(SelectedObject)));
+            Pallet = Repository.Get(typeof(SelectedPallet)) as SelectedPallet;
         }
 
         private ICommand _greetCommand;
 
-        // 挨拶コマンド。
         public ICommand GreetCommand
         {
             get
@@ -79,7 +63,6 @@ namespace MTGTool.ViewModel
             }
         }
 
-        // 挨拶コマンドの実行。
         private void GreetCommandExecute()
         {
             var objList = Repository.Get(typeof(MovieObjectList)) as MovieObjectList; 
@@ -99,7 +82,6 @@ namespace MTGTool.ViewModel
             });
         }
 
-        // 挨拶コマンドを実行できるか判定する。
         private bool CanGreetCommandExecute()
         {
             return true;
@@ -117,7 +99,7 @@ namespace MTGTool.ViewModel
 
         private void EditCommandExecute()
         {
-            Pallet = new EditMessageViewModel();
+            Pallet.Pallet = new EditMessageViewModel();
             ShowPallet();
         }
 
@@ -157,7 +139,7 @@ namespace MTGTool.ViewModel
 
         private void ActorCommandExecute()
         {
-            Pallet = new EditActorViewModel();
+            Pallet.Pallet = new EditActorViewModel();
             ShowPallet();
         }
 
@@ -173,7 +155,7 @@ namespace MTGTool.ViewModel
 
         private void GroupCommandExecute()
         {
-            Pallet = new EditGroupViewModel();
+            Pallet.Pallet = new EditGroupViewModel();
             ShowPallet();
         }
 
