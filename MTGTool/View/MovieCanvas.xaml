@@ -8,6 +8,7 @@
              xmlns:view="clr-namespace:MTGTool.View"
              xmlns:model="clr-namespace:MTGTool.Model"
              xmlns:movieObject="clr-namespace:MTGTool.Model.MovieObjects"
+             xmlns:group="clr-namespace:MTGTool.Model.Group"
              xmlns:conv="clr-namespace:MTGTool.Converter"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:behaviors="clr-namespace:MTGTool.Behavior"
@@ -20,6 +21,71 @@
 
     <UserControl.Resources>
         <conv:VisibleConverter x:Key="visibleConverter"></conv:VisibleConverter>
+        <DataTemplate DataType="{x:Type movieObject:MovieObject}">
+            <Grid Margin="10,0,10,0">
+                <Image Source="{Binding Bitmap}" 
+                    Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" 
+                    Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"
+                    Visibility="{Binding Visible, Converter={StaticResource visibleConverter}}">
+                    <Image.LayoutTransform>
+                        <RotateTransform CenterX="{Binding CenterX}" CenterY="{Binding CenterY}" Angle="{Binding Angle}"/>
+                    </Image.LayoutTransform>
+                </Image>
+                <ItemsControl ItemsSource="{Binding DisplayText}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel VerticalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <view:OutlineText Text="{Binding}" FontSize="100" FontWeight="Black" FontFamily="MigMix 1M" TextAlignment="Center" StrokeThickness="10" Stroke="White" Fill="Black"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Grid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="右回転" Command="{Binding RotateCommand}" CommandParameter="90"/>
+                        <MenuItem Header="左回転" Command="{Binding RotateCommand}" CommandParameter="-90"/>
+                        <MenuItem Header="上下反転" Command="{Binding RotateCommand}" CommandParameter="180"/>
+                        <MenuItem Header="テキストの追加" Command="{Binding TextChangeCommand}"/>
+                        <MenuItem Header="複製"/>
+                        <MenuItem Header="削除" Command="{Binding RemoveCommand}"/>
+                    </ContextMenu>
+                </Grid.ContextMenu>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type group:ObjectGroup}">
+            <Canvas>
+                <Border BorderBrush="Black" BorderThickness="2" Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}">
+                    <Border.LayoutTransform>
+                        <RotateTransform Angle="{Binding Angle}"/>
+                    </Border.LayoutTransform>
+                    <Grid Name="innercanvas"
+                            Width="{Binding DisplayWidth}" 
+                            Height="{Binding DisplayHeight}"
+                            Background="Transparent"
+                            ClipToBounds="True"
+                            AllowDrop="True">
+                        <Grid.LayoutTransform>
+                            <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}"/>
+                        </Grid.LayoutTransform>
+                        <i:Interaction.Behaviors>
+                            <behaviors:DragAcceptBehavior Description="{Binding Description}" />
+                        </i:Interaction.Behaviors>
+                        <Border BorderBrush="Red" BorderThickness="2" HorizontalAlignment="Center">
+                            <ItemsControl Name="Items" ItemsSource="{Binding MovieObjects}" HorizontalAlignment="Center">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </Border>
+                    </Grid>
+                </Border>
+            </Canvas>
+        </DataTemplate>
     </UserControl.Resources>
 
     <Canvas Name="canvas" Width="1280" Height="720" HorizontalAlignment="Left" VerticalAlignment="Top" ClipToBounds="True">
@@ -30,75 +96,6 @@
                     <Canvas/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Canvas>
-                        <Border BorderBrush="Black" BorderThickness="2" Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}">
-                            <Border.LayoutTransform>
-                                <RotateTransform Angle="{Binding Angle}"/>
-                            </Border.LayoutTransform>
-                            <Grid Name="innercanvas"
-                            Width="{Binding DisplayWidth}" 
-                            Height="{Binding DisplayHeight}"
-                            Background="Transparent"
-                            ClipToBounds="True"
-                            AllowDrop="True">
-                                <Grid.LayoutTransform>
-                                    <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}"/>
-                                </Grid.LayoutTransform>
-                                <i:Interaction.Behaviors>
-                                    <behaviors:DragAcceptBehavior Description="{Binding Description}" />
-                                </i:Interaction.Behaviors>
-                                <Border BorderBrush="Red" BorderThickness="2" HorizontalAlignment="Center">
-                                    <ItemsControl Name="Items" ItemsSource="{Binding MovieObjects}" HorizontalAlignment="Center">
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <WrapPanel/>
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <Grid Margin="10,0,10,0">
-                                                    <Image Source="{Binding Bitmap}" 
-                                                           Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" 
-                                                           Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"
-                                                           Visibility="{Binding Visible, Converter={StaticResource visibleConverter}}">
-                                                        <Image.LayoutTransform>
-                                                            <RotateTransform CenterX="{Binding CenterX}" CenterY="{Binding CenterY}" Angle="{Binding Angle}"/>
-                                                        </Image.LayoutTransform>
-                                                    </Image>
-                                                    <ItemsControl ItemsSource="{Binding DisplayText}">
-                                                        <ItemsControl.ItemsPanel>
-                                                            <ItemsPanelTemplate>
-                                                                <StackPanel VerticalAlignment="Center"/>
-                                                            </ItemsPanelTemplate>
-                                                        </ItemsControl.ItemsPanel>
-                                                        <ItemsControl.ItemTemplate>
-                                                            <DataTemplate>
-                                                                <view:OutlineText Text="{Binding}" FontSize="100" FontWeight="Black" FontFamily="MigMix 1M" TextAlignment="Center" StrokeThickness="10" Stroke="White" Fill="Black"/>
-                                                            </DataTemplate>
-                                                        </ItemsControl.ItemTemplate>
-                                                    </ItemsControl>
-                                                    <Grid.ContextMenu>
-                                                        <ContextMenu>
-                                                            <MenuItem Header="右回転" Command="{Binding RotateCommand}" CommandParameter="90"/>
-                                                            <MenuItem Header="左回転" Command="{Binding RotateCommand}" CommandParameter="-90"/>
-                                                            <MenuItem Header="上下反転" Command="{Binding RotateCommand}" CommandParameter="180"/>
-                                                            <MenuItem Header="テキストの追加" Command="{Binding TextChangeCommand}"/>
-                                                            <MenuItem Header="複製"/>
-                                                            <MenuItem Header="削除" Command="{Binding RemoveCommand}"/>
-                                                        </ContextMenu>
-                                                        </Grid.ContextMenu>
-                                                </Grid>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </Border>
-                            </Grid>
-                        </Border>
-                    </Canvas>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
         </ItemsControl>
         <Image Source="{Binding Path=MessageWindow}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Canvas.Top="420" Width="1280"/>
         <Image Source="{Binding Path=Character}" Canvas.Right="0" Canvas.Bottom="0" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
