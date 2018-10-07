@@ -82,8 +82,11 @@ namespace MTGTool.ViewModel
         // 挨拶コマンドの実行。
         private void GreetCommandExecute()
         {
+            var objList = Repository.Get(typeof(MovieObjectList)) as MovieObjectList; 
             var msgList = Repository.Get(typeof(MessageList)) as MessageList;
             var current = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
+
+            objList.Init();
 
             Task.Run(() =>
             {

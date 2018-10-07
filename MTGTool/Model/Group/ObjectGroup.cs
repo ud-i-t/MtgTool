@@ -146,7 +146,13 @@ namespace MTGTool.Model.Group
             var target = fe.DataContext as ObjectGroup;
             if (target == null) return;
 
-            MovieObjects.Add(new MovieObject(data.Bitmap) { Visible = true });
+            var obj = new MovieObject(data.Bitmap) { Visible = true };
+            var currentMsg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
+            currentMsg.message.AddCommand(new MovieCommand.AddObject(obj));
+
+            var objList = Repository.Get(typeof(MovieObjectList)) as MovieObjectList;
+            objList.Add(obj);
+            MovieObjects.Add(obj);
         }
 
         private void Description_DragOver(System.Windows.DragEventArgs args)
