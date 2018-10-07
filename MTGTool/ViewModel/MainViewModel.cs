@@ -131,7 +131,7 @@ namespace MTGTool.ViewModel
             get
             {
                 return _addCommand ??
-                    (_addCommand = new RelayCommand(AddCommandExecute, CanAddCommandExecute));
+                    (_addCommand = new RelayCommand(AddCommandExecute, OK));
             }
         }
 
@@ -142,18 +142,13 @@ namespace MTGTool.ViewModel
             repo.Add(new Message() { Actor = actors.First()});
         }
 
-        private bool CanAddCommandExecute()
-        {
-            return true;
-        }
-
         private ICommand _actorCommand;
         public ICommand ActorCommand
         {
             get
             {
                 return _actorCommand ??
-                    (_actorCommand = new RelayCommand(ActorCommandExecute, CanActorCommandExecute));
+                    (_actorCommand = new RelayCommand(ActorCommandExecute, OK));
             }
         }
 
@@ -163,11 +158,21 @@ namespace MTGTool.ViewModel
             ShowPallet();
         }
 
-        private bool CanActorCommandExecute()
+        private ICommand _groupCommand;
+        public ICommand GroupCommand
         {
-            return true;
+            get
+            {
+                return _groupCommand ??
+                    (_groupCommand = new RelayCommand(GroupCommandExecute, OK));
+            }
         }
 
+        private void GroupCommandExecute()
+        {
+            Pallet = new EditGroupViewModel();
+            ShowPallet();
+        }
 
         private ICommand _captureCommand;
         public ICommand CaptureCommand
@@ -199,5 +204,7 @@ namespace MTGTool.ViewModel
         {
             Repository.Save();
         }
+
+        private bool OK => true;
     }
 }

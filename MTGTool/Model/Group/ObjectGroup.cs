@@ -15,12 +15,103 @@ namespace MTGTool.Model.Group
 {
     class ObjectGroup : ViewModelBase
     {
-        public int X { get; set; } = 100;
-        public int Y { get; set; } = 100;
-        public double Width  => 800 / Scale;
-        public double Height => 150 / Scale;
-        public double Scale { get; } = 0.25;
-        public int Angle { get; } = 180;
+        private string _name;
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+                RaisePropertyChanged(nameof(Name));
+            }
+        }
+
+        private int _x;
+        public int X
+        {
+            get
+            {
+                return _x;
+            }
+            set
+            {
+                _x = value;
+                RaisePropertyChanged(nameof(X));
+            }
+        }
+
+        private int _y;
+        public int Y
+        {
+            get
+            {
+                return _y;
+            }
+            set
+            {
+                _y = value;
+                RaisePropertyChanged(nameof(Y));
+            }
+        }
+
+        private int _width;
+        public int Width
+        {
+            get
+            {
+                return _width;
+            }
+            set
+            {
+                _width = value;
+                RaisePropertyChanged(nameof(Width));
+                RaisePropertyChanged(nameof(DisplayWidth));
+            }
+        }
+        public double DisplayWidth => Width / Scale;
+
+        private int _height;
+        public int Height
+        {
+            get
+            {
+                return _height;
+            }
+            set
+            {
+                _height = value;
+                RaisePropertyChanged(nameof(Height));
+                RaisePropertyChanged(nameof(DisplayHeight));
+            }
+        }
+        public double DisplayHeight => Height / Scale;
+
+        private double _scale = 0.25;
+        public double Scale
+        {
+            get { return _scale; }
+            set
+            {
+                _scale = value;
+                RaisePropertyChanged(nameof(Scale));
+
+            }
+        }
+
+        private double _angle;
+        public double Angle
+        {
+            get { return _angle; }
+            set
+            {
+                _angle = value;
+                RaisePropertyChanged(nameof(Angle));
+
+            }
+        }
         public ObservableCollection<MovieObject> MovieObjects { get; } = new ObservableCollection<MovieObject>();
 
         public ObjectGroup()

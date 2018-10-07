@@ -36,6 +36,9 @@
         <DataTemplate DataType="{x:Type vm:EditActorViewModel}">
             <view:EditActor HorizontalAlignment="Right"/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:EditGroupViewModel}">
+            <view:EditGroup HorizontalAlignment="Right"/>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>
@@ -47,12 +50,16 @@
                 <MenuItem Header="別名で保存"/>
                 <MenuItem Header="終了"/>
             </MenuItem>
+            <MenuItem Header="基本設定">
+                <MenuItem Header="キャンバス"/>
+                <MenuItem Header="アクター" Command="{Binding ActorCommand}"/>
+                <MenuItem Header="オブジェクトグループ" Command="{Binding GroupCommand}" />
+            </MenuItem>
+            <MenuItem Header="素材">
+                <MenuItem Header="画像"/>
+                <MenuItem Header="音声"/>
+            </MenuItem>
         </Menu>
-        <WrapPanel Margin="0,20,0,0">
-            <Button Command="{Binding ActorCommand}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="100" Height="50">
-                <TextBlock Text="アクター編集"></TextBlock>
-            </Button>
-        </WrapPanel>
         <StackPanel HorizontalAlignment="Left" Width="200" Margin="0,60,0,0">
             <view:MessageList></view:MessageList>
             <Button Command="{Binding Path=AddCommand}">

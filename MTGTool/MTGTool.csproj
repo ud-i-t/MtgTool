@@ -118,6 +118,7 @@
     <Compile Include="Util\CursorInfo.cs" />
     <Compile Include="ViewModel\CanvasViewModel.cs" />
     <Compile Include="ViewModel\EditActorViewModel.cs" />
+    <Compile Include="ViewModel\EditGroupViewModel.cs" />
     <Compile Include="ViewModel\EditMessageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MessageListViewModel.cs" />
@@ -125,6 +126,9 @@
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\EditActor.xaml.cs">
       <DependentUpon>EditActor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditGroup.xaml.cs">
+      <DependentUpon>EditGroup.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditMessage.xaml.cs">
       <DependentUpon>EditMessage.xaml</DependentUpon>
@@ -151,6 +155,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\EditActor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditGroup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

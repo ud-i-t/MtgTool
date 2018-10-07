@@ -38,8 +38,8 @@
                                 <RotateTransform Angle="{Binding Angle}"/>
                             </Border.LayoutTransform>
                             <Grid Name="innercanvas"
-                            Width="{Binding Width}" 
-                            Height="{Binding Height}"
+                            Width="{Binding DisplayWidth}" 
+                            Height="{Binding DisplayHeight}"
                             Background="Transparent"
                             ClipToBounds="True"
                             AllowDrop="True">
