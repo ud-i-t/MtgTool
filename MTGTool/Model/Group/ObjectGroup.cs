@@ -17,8 +17,10 @@ namespace MTGTool.Model.Group
     {
         public int X { get; set; } = 100;
         public int Y { get; set; } = 100;
-        public int Width { get; set; } = 600;
-        public int Height { get; set; } = 300;
+        public double Width  => 800 / Scale;
+        public double Height => 150 / Scale;
+        public double Scale { get; } = 0.25;
+        public int Angle { get; } = 180;
         public ObservableCollection<MovieObject> MovieObjects { get; } = new ObservableCollection<MovieObject>();
 
         public ObjectGroup()

@@ -34,41 +34,48 @@
                 <DataTemplate>
                     <Canvas>
                         <Border BorderBrush="Black" BorderThickness="2" Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}">
-                            <Canvas Name="innercanvas"
+                            <Border.LayoutTransform>
+                                <RotateTransform Angle="{Binding Angle}"/>
+                            </Border.LayoutTransform>
+                            <Grid Name="innercanvas"
                             Width="{Binding Width}" 
                             Height="{Binding Height}"
                             Background="Transparent"
                             ClipToBounds="True"
                             AllowDrop="True">
+                                <Grid.LayoutTransform>
+                                    <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}"/>
+                                </Grid.LayoutTransform>
                                 <i:Interaction.Behaviors>
                                     <behaviors:DragAcceptBehavior Description="{Binding Description}" />
                                 </i:Interaction.Behaviors>
-                                <ItemsControl Name="Items" ItemsSource="{Binding MovieObjects}">
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <Canvas/>
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Canvas>
-                                                <Image Source="{Binding Bitmap}" 
+                                <Border BorderBrush="Red" BorderThickness="2" HorizontalAlignment="Center">
+                                    <ItemsControl Name="Items" ItemsSource="{Binding MovieObjects}" HorizontalAlignment="Center">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Canvas Width="{Binding Bitmap.PixelWidth}" Margin="10,0,10,0">
+                                                    <Image Source="{Binding Bitmap}" 
                            Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" 
                            Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"
                            Visibility="{Binding Visible, Converter={StaticResource visibleConverter}}">
-                                                    <Image.RenderTransform>
-                                                        <RotateTransform CenterX="{Binding CenterX}" CenterY="{Binding CenterY}" Angle="{Binding Angle}"/>
-                                                    </Image.RenderTransform>
-                                                    <Image.ContextMenu>
-                                                        <ContextMenu>
-                                                            <MenuItem Header="右回転" Command="{Binding RotateCommand}" CommandParameter="90"/>
-                                                            <MenuItem Header="左回転" Command="{Binding RotateCommand}" CommandParameter="-90"/>
-                                                            <MenuItem Header="複製"/>
-                                                            <MenuItem Header="削除" Command="{Binding RemoveCommand}"/>
-                                                        </ContextMenu>
-                                                    </Image.ContextMenu>
-                                                </Image>
-                                                <TextBlock Text="{Binding Text}" 
+                                                        <Image.RenderTransform>
+                                                            <RotateTransform CenterX="{Binding CenterX}" CenterY="{Binding CenterY}" Angle="{Binding Angle}"/>
+                                                        </Image.RenderTransform>
+                                                        <Image.ContextMenu>
+                                                            <ContextMenu>
+                                                                <MenuItem Header="右回転" Command="{Binding RotateCommand}" CommandParameter="90"/>
+                                                                <MenuItem Header="左回転" Command="{Binding RotateCommand}" CommandParameter="-90"/>
+                                                                <MenuItem Header="複製"/>
+                                                                <MenuItem Header="削除" Command="{Binding RemoveCommand}"/>
+                                                            </ContextMenu>
+                                                        </Image.ContextMenu>
+                                                    </Image>
+                                                    <TextBlock Text="{Binding Text}" 
                                    Width="{Binding Bitmap.PixelWidth}"
                                    Canvas.Top="{Binding CenterY}"
                                    FontFamily="MigMix 1M" 
@@ -76,11 +83,12 @@
                                    TextAlignment="Center"
                                    Background="AliceBlue"
                                    Opacity="0.5"></TextBlock>
-                                            </Canvas>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </Canvas>
+                                                </Canvas>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </Border>
+                            </Grid>
                         </Border>
                     </Canvas>
                 </DataTemplate>
