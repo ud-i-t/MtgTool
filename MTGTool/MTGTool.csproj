@@ -92,6 +92,7 @@
     <Compile Include="Behavior\DragAcceptBehavior.cs" />
     <Compile Include="Behavior\DragStartBehavior.cs" />
     <Compile Include="Behavior\MainWindowClose.cs" />
+    <Compile Include="Converter\CardMarginConverter.cs" />
     <Compile Include="Converter\ReverseBoolConverter.cs" />
     <Compile Include="Converter\VisibleConverter.cs" />
     <Compile Include="Messages\RemoveImageMessage.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Model\MovieCommand\AddObject.cs" />
     <Compile Include="Model\MovieCommand\IMovieCommand.cs" />
     <Compile Include="Model\MovieObjects\MovieObject.cs" />
+    <Compile Include="Model\MovieObjects\MovieObjectImage.cs" />
     <Compile Include="Model\MovieObjects\MovieObjectList.cs" />
     <Compile Include="Model\SelectedMessage.cs" />
     <Compile Include="Model\SelectedObject.cs" />

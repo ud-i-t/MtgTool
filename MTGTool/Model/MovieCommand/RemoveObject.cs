@@ -9,8 +9,8 @@ namespace MTGTool.Model.MovieCommand
 {
     class RemoveObject : IMovieCommand
     {
-        MovieObject _obj;
-        public RemoveObject(MovieObject obj)
+        MovieObjectImage _obj;
+        public RemoveObject(MovieObjectImage obj)
         {
             _obj = obj;
         }

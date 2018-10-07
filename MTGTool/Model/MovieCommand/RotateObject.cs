@@ -9,9 +9,9 @@ namespace MTGTool.Model.MovieCommand
 {
     class RotateObject : IMovieCommand
     {
-        MovieObject _obj;
+        MovieObjectImage _obj;
         int _angle;
-        public RotateObject(MovieObject obj, int angle)
+        public RotateObject(MovieObjectImage obj, int angle)
         {
             _obj = obj;
             _angle = angle;

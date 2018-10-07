@@ -16,8 +16,7 @@ namespace MTGTool.Model.MovieObjects
         {
             foreach(var obj in Items)
             {
-                obj.Visible = false;
-                obj.Angle = 0;
+                obj.Init();
             }
         }
     }

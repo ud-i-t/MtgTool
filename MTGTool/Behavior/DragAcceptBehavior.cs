@@ -104,7 +104,7 @@ namespace MTGTool.Behavior
                 return;
             }
             desc.OnDragOver(e);
-            e.Handled = true;
+            //e.Handled = true;
         }
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace MTGTool.Behavior
                 return;
             }
             desc.OnDrop(e);
-            e.Handled = true;
+            //e.Handled = true;
         }
         #endregion Method
     }

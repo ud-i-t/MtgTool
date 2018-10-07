@@ -10,11 +10,11 @@ namespace MTGTool.ViewModel
 {
     class EditCardTextViewModel : ViewModelBase
     {
-        public SelectedObject Object { get; private set; }
+        public SelectedObjectImage Object { get; private set; }
 
         public EditCardTextViewModel()
         {
-            Object = Repository.Get(typeof(SelectedObject)) as SelectedObject;
+            Object = Repository.Get(typeof(SelectedObjectImage)) as SelectedObjectImage;
         }
     }
 }

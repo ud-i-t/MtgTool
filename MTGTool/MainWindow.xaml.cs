@@ -33,7 +33,7 @@ namespace MTGTool
             Repository.Load();
             Repository.Set(typeof(SelectedPallet), new SelectedPallet());
             Repository.Set(typeof(SelectedMessage), new SelectedMessage());
-            Repository.Set(typeof(SelectedObject), new SelectedObject());
+            Repository.Set(typeof(SelectedObjectImage), new SelectedObjectImage());
             Repository.Set(typeof(MessageList), new MessageList());
             Repository.Set(typeof(MovieObjectList), new MovieObjectList());
             Repository.Set(typeof(ObjectGroupList), new ObjectGroupList());

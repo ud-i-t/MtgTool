@@ -18,32 +18,5 @@ namespace MTGTool.Model
         {
             Bitmap = bitmap;
         }
-
-        private ICommand _mouseDownCommand;
-        public ICommand MouseDownCommand
-        {
-            get
-            {
-                return _mouseDownCommand ??
-                    (_mouseDownCommand = new RelayCommand(MouseDownExecute, () =>
-                    {
-                        var selectedObject = Repository.Get(typeof(SelectedObject)) as SelectedObject;
-                        return selectedObject.SeletedImg == null;
-                    }));
-            }
-        }
-
-        private void MouseDownExecute()
-        {
-
-            var selectedObject = Repository.Get(typeof(SelectedObject)) as SelectedObject;
-            var pos = Mouse.GetPosition(null);
-
-            selectedObject.SeletedImg = new MovieObject(Bitmap)
-            {
-                X = (int)pos.X,
-                Y = (int)pos.Y,
-            };
-        }
     }
 }

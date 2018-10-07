@@ -1,4 +1,7 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using MTGTool.Behavior;
+using MTGTool.Model.Group;
 using MTGTool.Model.MovieCommand;
 using MTGTool.ViewModel;
 using System;
@@ -10,153 +13,77 @@ using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace MTGTool.Model.MovieObjects
 {
-    class MovieObject : INotifyPropertyChanged
+    class MovieObject : ViewModelBase
     {
-        private int _x;
-        public int X
-        {
-            get
-            {
-                return _x;
-            }
-            set
-            {
-                _x = value;
-                _onChange.OnNext(this);
-            }
-        }
-        private int _y;
-        public int Y
-        {
-            get
-            {
-                return _y;
-            }
-            set
-            {
-                _y = value;
-                _onChange.OnNext(this);
-            }
-        }
-        private int _angle;
-        public int Angle
-        {
-            get
-            {
-                return _angle;
-            }
-            set
-            {
-                _angle = value;
-                _onChange.OnNext(this);
-                OnPropertyChanged(nameof(Angle));
-            }
-        }
-
-        private bool _visible;
-        public bool Visible
-        {
-            get
-            {
-                return _visible;
-            }
-            internal set
-            {
-                _visible = value;
-                OnPropertyChanged(nameof(Visible));
-            }
-        }
-
-        private string _text = string.Empty;
-        public string Text
-        {
-            get
-            {
-                return _text;
-            }
-            set
-            {
-                _text = value;
-                DisplayText.Clear();
-                foreach (var t in _text.Split('\n'))
-                {
-                    DisplayText.Add(t);
-                }
-            }
-        }
-
-        public ObservableCollection<string> DisplayText { get; } = new ObservableCollection<string>();
-
-        public BitmapSource Bitmap { get; private set; }
-        public int CenterX => Bitmap.PixelWidth / 2;
-        public int CenterY => Bitmap.PixelHeight / 2;
+        public ObservableCollection<MovieObjectImage> Images { get; } = new ObservableCollection<MovieObjectImage>();
 
         private Subject<MovieObject> _onChange = new Subject<MovieObject>();
         public IObservable<MovieObject> OnChange => _onChange.AsObservable();
-        private SelectedMessage _selectedMsg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
 
-        public MovieObject(BitmapSource bitmap)
+        public MovieObject()
         {
-            Bitmap = bitmap;
-            Angle = 0;
+            Description = new DropAcceptDescription();
+            Description.DragOver += Description_DragOver;
+            Description.DragDrop += Description_DragDrop;
         }
 
-        private ICommand _textChangeCommand;
-        public ICommand TextChangeCommand
+        public void Init()
         {
-            get
+            foreach (var obj in Images)
             {
-                return _textChangeCommand ??
-                    (_textChangeCommand = new RelayCommand<object>(angle =>
-                    {
-                        var selectedObj = Repository.Get(typeof(SelectedObject)) as SelectedObject;
-                        selectedObj.SeletedImg = this;
-
-                        var pallet = Repository.Get(typeof(SelectedPallet)) as SelectedPallet;
-                        pallet.Pallet = new EditCardTextViewModel();
-                    }
-                    , _ => true));
+                obj.Visible = false;
+                obj.Angle = 0;
             }
         }
 
-        private ICommand _rotateCommand;
-        public ICommand RotateCommand
+        private DropAcceptDescription _description;
+        public DropAcceptDescription Description
         {
-            get
+            get { return this._description; }
+            set
             {
-                return _rotateCommand ??
-                    (_rotateCommand = new RelayCommand<object>(angle =>
-                    {
-                        _selectedMsg.message.AddCommand(new RotateObject(this, int.Parse(angle.ToString())));
-                    }
-                    , _ => true));
+                if (this._description == value)
+                {
+                    return;
+                }
+                this._description = value;
+                this.RaisePropertyChanged(nameof(Description));
             }
         }
 
-        private ICommand _removeCommand;
-        public ICommand RemoveCommand
+        private void Description_DragDrop(System.Windows.DragEventArgs args)
         {
-            get
-            {
-                return _removeCommand ??
-                    (_removeCommand = new RelayCommand<object>(angle =>
-                    {
-                        _selectedMsg.message.AddCommand(new RemoveObject(this));
-                    }
-                    , _ => true));
-            }
+            if (!args.Data.GetDataPresent(typeof(Image))) return;
+            var data = args.Data.GetData(typeof(Image)) as Image;
+            if (data == null) return;
+            var fe = args.OriginalSource as FrameworkElement;
+            if (fe == null) return;
+            var target = fe.DataContext as MovieObjectImage;
+            if (target == null) return;
+
+            var img = new MovieObjectImage(data.Bitmap) { Visible = true };
+            var currentMsg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
+            currentMsg.message.AddCommand(new MovieCommand.AddObject(img));
+
+            Images.Add(img);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged(string name)
+        private void Description_DragOver(System.Windows.DragEventArgs args)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            if (args.AllowedEffects.HasFlag(DragDropEffects.Copy))
+            {
+                if (args.Data.GetDataPresent(typeof(Image)))
+                {
+                    return;
+                }
+            }
+            args.Effects = DragDropEffects.None;
         }
     }
 }

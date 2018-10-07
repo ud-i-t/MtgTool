@@ -9,8 +9,8 @@ namespace MTGTool.Model.MovieCommand
 {
     class AddObject : IMovieCommand
     {
-        MovieObject _obj;
-        public AddObject(MovieObject obj)
+        MovieObjectImage _obj;
+        public AddObject(MovieObjectImage obj)
         {
             _obj = obj;
         }

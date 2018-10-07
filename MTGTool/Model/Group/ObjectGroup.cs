@@ -146,9 +146,12 @@ namespace MTGTool.Model.Group
             var target = fe.DataContext as ObjectGroup;
             if (target == null) return;
 
-            var obj = new MovieObject(data.Bitmap) { Visible = true };
+            var obj = new MovieObject();
+            var img = new MovieObjectImage(data.Bitmap) { Visible = true };
+            obj.Images.Add(img);
+            obj.Images.Add(img);
             var currentMsg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
-            currentMsg.message.AddCommand(new MovieCommand.AddObject(obj));
+            currentMsg.message.AddCommand(new MovieCommand.AddObject(img));
 
             var objList = Repository.Get(typeof(MovieObjectList)) as MovieObjectList;
             objList.Add(obj);
@@ -157,14 +160,27 @@ namespace MTGTool.Model.Group
 
         private void Description_DragOver(System.Windows.DragEventArgs args)
         {
-            if (args.AllowedEffects.HasFlag(DragDropEffects.Copy))
+            if (!args.AllowedEffects.HasFlag(DragDropEffects.Copy))
             {
-                if (args.Data.GetDataPresent(typeof(Image)))
-                {
-                    return;
-                }
+                args.Effects = DragDropEffects.None;
+                return;
             }
-            args.Effects = DragDropEffects.None;
+            if (!args.Data.GetDataPresent(typeof(Image)))
+            {
+                args.Effects = DragDropEffects.None;
+                return;
+            }
+            var fe = args.OriginalSource as FrameworkElement;
+            if (fe == null)
+            {
+                args.Effects = DragDropEffects.None;
+                return;
+            }
+            //var target = fe.DataContext as ObjectGroup;
+            //if (target == null) {
+            //    args.Effects = DragDropEffects.None;
+            //    return;
+            //}
         }
 
         internal void Add(MovieObject img)
