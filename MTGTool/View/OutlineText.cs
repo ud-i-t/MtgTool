@@ -172,7 +172,7 @@ namespace MTGTool.View
             this.EnsureFormattedText();
 
             this.FormattedText.MaxTextWidth = finalSize.Width;
-            this.FormattedText.MaxTextHeight = finalSize.Height;
+            this.FormattedText.MaxTextHeight = finalSize.Height == 0 ? 1 : finalSize.Height;
 
             this.TextGeometry = null;
 

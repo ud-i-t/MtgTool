@@ -70,7 +70,7 @@ namespace MTGTool.Model.MovieObjects
             }
         }
 
-        private string _text = "飛行\n絆魂\n警戒";
+        private string _text = string.Empty;
         public string Text
         {
             get
@@ -98,21 +98,19 @@ namespace MTGTool.Model.MovieObjects
             Angle = 0;
         }
 
-        private ICommand _mouseDownCommand;
-        public ICommand MouseDownCommand
+        private ICommand _textChangeCommand;
+        public ICommand TextChangeCommand
         {
             get
             {
-                return _mouseDownCommand ??
-                    (_mouseDownCommand = new RelayCommand(MouseDownExecute, () => true));
+                return _textChangeCommand ??
+                    (_textChangeCommand = new RelayCommand<object>(angle =>
+                    {
+                        // TODO:メッセージ編集窓を開く
+                    }
+                    , _ => true));
             }
         }
-
-        private void MouseDownExecute()
-        {
-            Console.Write("down");
-        }
-
 
         private ICommand _rotateCommand;
         public ICommand RotateCommand
