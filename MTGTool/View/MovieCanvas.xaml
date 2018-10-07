@@ -58,32 +58,28 @@
                                         </ItemsControl.ItemsPanel>
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
-                                                <Canvas Width="{Binding Bitmap.PixelWidth}" Margin="10,0,10,0">
+                                                <Grid Margin="10,0,10,0">
                                                     <Image Source="{Binding Bitmap}" 
-                           Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" 
-                           Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"
-                           Visibility="{Binding Visible, Converter={StaticResource visibleConverter}}">
-                                                        <Image.RenderTransform>
+                                                           Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" 
+                                                           Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"
+                                                           Visibility="{Binding Visible, Converter={StaticResource visibleConverter}}">
+                                                        <Image.LayoutTransform>
                                                             <RotateTransform CenterX="{Binding CenterX}" CenterY="{Binding CenterY}" Angle="{Binding Angle}"/>
-                                                        </Image.RenderTransform>
-                                                        <Image.ContextMenu>
-                                                            <ContextMenu>
-                                                                <MenuItem Header="右回転" Command="{Binding RotateCommand}" CommandParameter="90"/>
-                                                                <MenuItem Header="左回転" Command="{Binding RotateCommand}" CommandParameter="-90"/>
-                                                                <MenuItem Header="複製"/>
-                                                                <MenuItem Header="削除" Command="{Binding RemoveCommand}"/>
-                                                            </ContextMenu>
-                                                        </Image.ContextMenu>
+                                                        </Image.LayoutTransform>
                                                     </Image>
-                                                    <TextBlock Text="{Binding Text}" 
-                                   Width="{Binding Bitmap.PixelWidth}"
-                                   Canvas.Top="{Binding CenterY}"
-                                   FontFamily="MigMix 1M" 
-                                   FontSize="18" 
-                                   TextAlignment="Center"
-                                   Background="AliceBlue"
-                                   Opacity="0.5"></TextBlock>
-                                                </Canvas>
+                                                    <StackPanel VerticalAlignment="Center" >
+                                                        <view:OutlineText Text="{Binding Text}" FontSize="100" FontWeight="Black" FontFamily="MigMix 1M" TextAlignment="Center" StrokeThickness="10" Stroke="White" Fill="Black"/>
+                                                        <view:OutlineText Text="{Binding Text}" FontSize="100" FontWeight="Black" FontFamily="MigMix 1M" TextAlignment="Center" StrokeThickness="10" Stroke="White" Fill="Black"/>
+                                                    </StackPanel>
+                                                    <Grid.ContextMenu>
+                                                        <ContextMenu>
+                                                            <MenuItem Header="右回転" Command="{Binding RotateCommand}" CommandParameter="90"/>
+                                                        <MenuItem Header="左回転" Command="{Binding RotateCommand}" CommandParameter="-90"/>
+                                                        <MenuItem Header="複製"/>
+                                                        <MenuItem Header="削除" Command="{Binding RemoveCommand}"/>
+                                                        </ContextMenu>
+                                                        </Grid.ContextMenu>
+                                                </Grid>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>

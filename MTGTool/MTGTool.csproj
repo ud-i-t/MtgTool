@@ -139,6 +139,7 @@
     <Compile Include="View\MovieCanvas.xaml.cs">
       <DependentUpon>MovieCanvas.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\OutlineText.cs" />
     <Compile Include="View\PictureListView.xaml.cs">
       <DependentUpon>PictureListView.xaml</DependentUpon>
     </Compile>

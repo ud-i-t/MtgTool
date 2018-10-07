@@ -11,6 +11,14 @@ namespace MTGTool.Model.Group
     {
         public ObjectGroupList()
         {
+            Add(new ObjectGroup()
+            {
+                Name = "自分の土地",
+                Width = 900,
+                Height = 100,
+                X = 40,
+                Y = 380,
+            });
             Add(new ObjectGroup() {
                 Name = "自分の場",
                 Width = 900,
@@ -25,6 +33,15 @@ namespace MTGTool.Model.Group
                 Height = 100,
                 X = 40,
                 Y = 140,
+                Angle = 180,
+            });
+            Add(new ObjectGroup()
+            {
+                Name = "相手の土地",
+                Width = 900,
+                Height = 100,
+                X = 40,
+                Y = 30,
                 Angle = 180,
             });
         }
