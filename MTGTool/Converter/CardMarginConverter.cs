@@ -15,7 +15,7 @@ namespace MTGTool.Converter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            List<MovieObjectImage> lista = (values[1] as IEnumerable<MovieObjectImage>).ToList();
+            List<MovieObjectImage> lista = (values[1] as IEnumerable<MovieObjectImage>).Where(x => x.Visible).ToList();
             var bottom = (lista.Count - 1) * 50;
             return new Thickness(bottom, 0, 0, 0);
         }
