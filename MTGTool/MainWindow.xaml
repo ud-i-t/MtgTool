@@ -80,6 +80,11 @@
             <Button Click="Button_Click">
                 <TextBlock Text="音声合成"></TextBlock>
             </Button>
+            <WrapPanel>
+                <CheckBox IsChecked="{Binding VisibleMessageWindow.Visible}">
+                </CheckBox>
+                <TextBlock Text="メッセージウインドウ・立ち絵を表示"></TextBlock>
+            </WrapPanel>
         </StackPanel>
         <Grid Margin="200, 25, 25, 0">
             <view:MovieCanvas x:Name="canvas"></view:MovieCanvas>

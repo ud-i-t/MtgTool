@@ -24,6 +24,7 @@ namespace MTGTool.ViewModel
         public string Message => _currentMsg.message?.Text;
         public BitmapImage MessageWindow { get; set; }
         public ObjectGroupList ObjectGroups { get; set; }
+        public VisibleMessageWindow VisibleMessage { get; private set; }
 
         private SelectedMessage _currentMsg;
 
@@ -40,6 +41,7 @@ namespace MTGTool.ViewModel
             });
 
             ObjectGroups = Repository.Get(typeof(ObjectGroupList)) as ObjectGroupList;
+            VisibleMessage = Repository.Get(typeof(VisibleMessageWindow)) as VisibleMessageWindow;
         }
 
         

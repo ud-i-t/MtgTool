@@ -44,12 +44,15 @@ namespace MTGTool.ViewModel
 
         public SelectedPallet Pallet { get; private set; }
 
+        public VisibleMessageWindow VisibleMessageWindow { get; private set; }
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel() : base(Messenger.Default)
         {
             Pallet = Repository.Get(typeof(SelectedPallet)) as SelectedPallet;
+            VisibleMessageWindow = Repository.Get(typeof(VisibleMessageWindow)) as VisibleMessageWindow;
         }
 
         private ICommand _greetCommand;

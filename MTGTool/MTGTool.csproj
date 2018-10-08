@@ -117,6 +117,7 @@
     <Compile Include="Model\SelectedMessage.cs" />
     <Compile Include="Model\SelectedObject.cs" />
     <Compile Include="Model\SelectedPallet.cs" />
+    <Compile Include="Model\VisibleMessageWindow.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Util\BitmapUtil.cs" />
     <Compile Include="Util\CursorInfo.cs" />
