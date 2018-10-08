@@ -89,6 +89,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behavior\DoubleClickBehavior.cs" />
     <Compile Include="Behavior\DragAcceptBehavior.cs" />
     <Compile Include="Behavior\DragStartBehavior.cs" />
     <Compile Include="Behavior\MainWindowClose.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Model\SelectedMessage.cs" />
     <Compile Include="Model\SelectedObjectImage.cs" />
     <Compile Include="Model\SelectedPallet.cs" />
+    <Compile Include="Model\SelectedPicture.cs" />
     <Compile Include="Model\VisibleMessageWindow.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Util\BitmapUtil.cs" />
@@ -128,6 +130,7 @@
     <Compile Include="ViewModel\EditCardTextViewModel.cs" />
     <Compile Include="ViewModel\EditGroupViewModel.cs" />
     <Compile Include="ViewModel\EditMessageViewModel.cs" />
+    <Compile Include="ViewModel\EditPictureViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MessageListViewModel.cs" />
     <Compile Include="ViewModel\PictureCanvasViewModel.cs" />
@@ -144,6 +147,9 @@
     </Compile>
     <Compile Include="View\EditMessage.xaml.cs">
       <DependentUpon>EditMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditPicture.xaml.cs">
+      <DependentUpon>EditPicture.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MessageList.xaml.cs">
       <DependentUpon>MessageList.xaml</DependentUpon>
@@ -187,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EditMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditPicture.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -35,6 +35,7 @@ namespace MTGTool
             Repository.Set(typeof(SelectedPallet), new SelectedPallet());
             Repository.Set(typeof(SelectedMessage), new SelectedMessage());
             Repository.Set(typeof(SelectedObjectImage), new SelectedObjectImage());
+            Repository.Set(typeof(SelectedPicture), new SelectedPicture());
             Repository.Set(typeof(MessageList), new MessageList());
             Repository.Set(typeof(MovieObjectList), new MovieObjectList());
             Repository.Set(typeof(ObjectGroupList), new ObjectGroupList());

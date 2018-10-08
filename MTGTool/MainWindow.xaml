@@ -42,6 +42,9 @@
         <DataTemplate DataType="{x:Type vm:EditCardTextViewModel}">
             <view:EditCardText HorizontalAlignment="Right"/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:EditPictureViewModel}">
+            <view:EditPicture HorizontalAlignment="Right"/>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>

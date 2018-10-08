@@ -1,9 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using MTGTool.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace MTGTool.Model.MovieObjects
@@ -70,6 +73,24 @@ namespace MTGTool.Model.MovieObjects
         {
             Bitmap = bitmap;
             Angle = 0;
+        }
+
+        private ICommand _editCommand;
+        public ICommand EditCommand
+        {
+            get
+            {
+                return _editCommand ??
+                    (_editCommand = new RelayCommand<object>(angle =>
+                    {
+                        var selectedObj = Repository.Get(typeof(SelectedPicture)) as SelectedPicture;
+                        selectedObj.Picture = this;
+
+                        var pallet = Repository.Get(typeof(SelectedPallet)) as SelectedPallet;
+                        pallet.Pallet = new EditPictureViewModel();
+                    }
+                    , _ => true));
+            }
         }
     }
 }
