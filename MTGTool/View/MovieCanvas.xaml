@@ -23,7 +23,7 @@
         <conv:VisibleConverter x:Key="visibleConverter"></conv:VisibleConverter>
         <conv:CardMarginConverter x:Key="marginConveter"></conv:CardMarginConverter>
         <DataTemplate DataType="{x:Type movieObject:MovieObject}">
-            <Grid Background="AliceBlue" AllowDrop="True">
+            <Grid AllowDrop="True" Margin="10,0,10,0">
                 <i:Interaction.Behaviors>
                     <behaviors:DragAcceptBehavior Description="{Binding Description}" />
                 </i:Interaction.Behaviors>
@@ -35,7 +35,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
+                            <Grid VerticalAlignment="Bottom">
                                 <Grid.Margin>
                                     <MultiBinding Converter="{StaticResource marginConveter}">
                                         <Binding/>
@@ -88,7 +88,6 @@
                             Width="{Binding DisplayWidth}" 
                             Height="{Binding DisplayHeight}"
                             Background="Transparent"
-                            ClipToBounds="True"
                             AllowDrop="True">
                         <Grid.LayoutTransform>
                             <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}"/>
@@ -96,15 +95,13 @@
                         <i:Interaction.Behaviors>
                             <behaviors:DragAcceptBehavior Description="{Binding Description}" />
                         </i:Interaction.Behaviors>
-                        <Border BorderBrush="Red" BorderThickness="0" HorizontalAlignment="Center">
-                            <ItemsControl Name="Items" ItemsSource="{Binding MovieObjects}" HorizontalAlignment="Center">
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <WrapPanel/>
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                            </ItemsControl>
-                        </Border>
+                        <ItemsControl Name="Items" ItemsSource="{Binding MovieObjects}" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
                     </Grid>
                 </Border>
             </Canvas>

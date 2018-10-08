@@ -71,7 +71,7 @@ namespace MTGTool.Model.MovieObjects
             var currentMsg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
             currentMsg.message.AddCommand(new MovieCommand.AddObject(img));
 
-            Images.Add(img);
+            Images.Insert(0, img);
         }
 
         private void Description_DragOver(System.Windows.DragEventArgs args)

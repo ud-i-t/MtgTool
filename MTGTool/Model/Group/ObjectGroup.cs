@@ -149,7 +149,6 @@ namespace MTGTool.Model.Group
             var obj = new MovieObject();
             var img = new MovieObjectImage(data.Bitmap) { Visible = true };
             obj.Images.Add(img);
-            obj.Images.Add(img);
             var currentMsg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
             currentMsg.message.AddCommand(new MovieCommand.AddObject(img));
 

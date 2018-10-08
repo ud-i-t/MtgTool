@@ -16,8 +16,8 @@ namespace MTGTool.Converter
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             List<MovieObjectImage> lista = (values[1] as IEnumerable<MovieObjectImage>).ToList();
-            var top = lista.IndexOf(values[0] as MovieObjectImage) * 10;
-            return new Thickness(10, top ,10, 0);
+            var bottom = (lista.Count - 1) * 50;
+            return new Thickness(bottom, 0, 0, 0);
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
