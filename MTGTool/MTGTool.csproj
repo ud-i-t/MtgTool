@@ -92,6 +92,7 @@
     <Compile Include="Behavior\DragAcceptBehavior.cs" />
     <Compile Include="Behavior\DragStartBehavior.cs" />
     <Compile Include="Behavior\MainWindowClose.cs" />
+    <Compile Include="Behavior\MouseOverBehaviour.cs" />
     <Compile Include="Converter\CardMarginConverter.cs" />
     <Compile Include="Converter\ReverseBoolConverter.cs" />
     <Compile Include="Converter\VisibleConverter.cs" />

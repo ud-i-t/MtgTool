@@ -7,6 +7,8 @@
              xmlns:vm="clr-namespace:MTGTool.ViewModel"
              xmlns:view="clr-namespace:MTGTool.View"
              xmlns:model="clr-namespace:MTGTool.Model"
+             xmlns:behaviors="clr-namespace:MTGTool.Behavior"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:movieObject="clr-namespace:MTGTool.Model.MovieObjects"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -17,15 +19,18 @@
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type movieObject:MoviePicture}">
             <Canvas VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                <Image Source="{Binding Bitmap}" 
+                <Border Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}" BorderThickness="2,2,2,2" BorderBrush="Transparent">
+                    <i:Interaction.Behaviors>
+                        <behaviors:MouseOverBehaviour/>
+                    </i:Interaction.Behaviors>
+                    <Image Source="{Binding Bitmap}" 
                     Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" 
-                    Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"
-                    Canvas.Left="{Binding X}"
-                    Canvas.Top="{Binding Y}">
-                    <Image.LayoutTransform>
-                        <RotateTransform CenterX="{Binding CenterX}" CenterY="{Binding CenterY}" Angle="{Binding Angle}"/>
-                    </Image.LayoutTransform>
-                </Image>
+                    Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}">
+                        <Image.LayoutTransform>
+                            <RotateTransform CenterX="{Binding CenterX}" CenterY="{Binding CenterY}" Angle="{Binding Angle}"/>
+                        </Image.LayoutTransform>
+                    </Image>
+                </Border>
             </Canvas>
         </DataTemplate>
     </UserControl.Resources>
