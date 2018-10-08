@@ -2,18 +2,21 @@
 using MTGTool.Model.Actors;
 using MTGTool.Model.Group;
 using MTGTool.Model.MovieObjects;
+using MTGTool.Model.System;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -29,8 +32,10 @@ namespace MTGTool
 
         public MainWindow()
         {
-            //Repository.Set(typeof(ActorList), new ActorList());
+            Language = XmlLanguage.GetLanguage(Thread.CurrentThread.CurrentCulture.Name);
+
             Repository.Load();
+            Repository.Set(typeof(FontList), new FontList());
             Repository.Set(typeof(VisibleMessageWindow), new VisibleMessageWindow());
             Repository.Set(typeof(SelectedPallet), new SelectedPallet());
             Repository.Set(typeof(SelectedMessage), new SelectedMessage());

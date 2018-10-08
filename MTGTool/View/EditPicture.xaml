@@ -6,12 +6,15 @@
              xmlns:vm="clr-namespace:MTGTool.ViewModel"
              xmlns:local="clr-namespace:MTGTool.View"
              xmlns:model="clr-namespace:MTGTool.Model.MovieObjects"
+             xmlns:conv="clr-namespace:MTGTool.Converter"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
         <vm:EditPictureViewModel></vm:EditPictureViewModel>
     </UserControl.DataContext>
     <UserControl.Resources>
+        <conv:FontFamilyToNameConverter x:Key="FontFamilyToNameConverter"/>
+
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="Width" Value="60"></Setter>
         </Style>
@@ -72,6 +75,17 @@
                 <WrapPanel>
                     <TextBlock Text="ボーダーの太さ："/>
                     <TextBox Text="{Binding BorderSize}"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="フォント："/>
+                    <ComboBox ItemsSource="{Binding Path=DataContext.Fonts, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+                              SelectedItem="{Binding Font}" Width="200">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={StaticResource FontFamilyToNameConverter}, Mode=OneWay}" FontSize="16"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </WrapPanel>
                 <WrapPanel>
                     <TextBlock Text="テキスト："/>

@@ -56,7 +56,7 @@
                                 <view:OutlineText Text="{Binding}" 
                                                   FontSize="{Binding Path=DataContext.FontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}}" 
                                                   FontWeight="Black" 
-                                                  FontFamily="MigMix 1M" 
+                                                  FontFamily="{Binding Path=DataContext.Font, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}}"
                                                   TextAlignment="Left" 
                                                   StrokeThickness="{Binding Path=DataContext.BorderSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}}"
                                                   Stroke="White"

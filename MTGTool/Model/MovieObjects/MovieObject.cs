@@ -57,7 +57,7 @@ namespace MTGTool.Model.MovieObjects
             }
         }
 
-        private void Description_DragDrop(System.Windows.DragEventArgs args)
+        private void Description_DragDrop(DragEventArgs args)
         {
             if (!args.Data.GetDataPresent(typeof(Image))) return;
             var data = args.Data.GetData(typeof(Image)) as Image;
@@ -74,7 +74,7 @@ namespace MTGTool.Model.MovieObjects
             Images.Insert(0, img);
         }
 
-        private void Description_DragOver(System.Windows.DragEventArgs args)
+        private void Description_DragOver(DragEventArgs args)
         {
             if (args.AllowedEffects.HasFlag(DragDropEffects.Copy))
             {

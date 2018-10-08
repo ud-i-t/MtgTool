@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace MTGTool.Model.MovieObjects
 {
@@ -39,6 +40,19 @@ namespace MTGTool.Model.MovieObjects
             {
                 _fontSize = value;
                 RaisePropertyChanged(nameof(FontSize));
+            }
+        }
+        private FontFamily _font = Fonts.SystemFontFamilies.First(x => x.FamilyNames.Any(y => y.Value == "メイリオ"));
+        public FontFamily Font
+        {
+            get
+            {
+                return _font;
+            }
+            set
+            {
+                _font = value;
+                RaisePropertyChanged(nameof(Font));
             }
         }
         private int _borderSize; 

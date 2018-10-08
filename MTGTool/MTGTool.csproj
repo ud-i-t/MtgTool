@@ -95,6 +95,7 @@
     <Compile Include="Behavior\MainWindowClose.cs" />
     <Compile Include="Behavior\MouseOverBehaviour.cs" />
     <Compile Include="Converter\CardMarginConverter.cs" />
+    <Compile Include="Converter\FontFamilyToNameConverter.cs" />
     <Compile Include="Converter\ReverseBoolConverter.cs" />
     <Compile Include="Converter\VisibleConverter.cs" />
     <Compile Include="Messages\RemoveImageMessage.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Model\SelectedObjectImage.cs" />
     <Compile Include="Model\SelectedPallet.cs" />
     <Compile Include="Model\SelectedPicture.cs" />
+    <Compile Include="Model\System\FontList.cs" />
     <Compile Include="Model\VisibleMessageWindow.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Util\BitmapUtil.cs" />
