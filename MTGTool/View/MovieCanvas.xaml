@@ -20,8 +20,26 @@
     </UserControl.DataContext>
 
     <UserControl.Resources>
-        <conv:VisibleConverter x:Key="visibleConverter"></conv:VisibleConverter>
+        <conv:VisibleConverter x:Key="vConverter"></conv:VisibleConverter>
         <conv:CardMarginConverter x:Key="marginConveter"></conv:CardMarginConverter>
+
+        <ResourceDictionary x:Key="commonDic">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="CommonDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
+        <DataTemplate DataType="{x:Type movieObject:MovieObjectImage}">
+            <Image Source="{Binding Bitmap}" 
+                    Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" 
+                    Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"
+                    Visibility="{Binding Visible, Converter={StaticResource vConverter}}">
+                <Image.LayoutTransform>
+                    <RotateTransform CenterX="{Binding CenterX}" CenterY="{Binding CenterY}" Angle="{Binding Angle}"/>
+                </Image.LayoutTransform>
+            </Image>
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type movieObject:MovieObject}">
             <Grid AllowDrop="True" Margin="10,0,10,0">
                 <i:Interaction.Behaviors>
@@ -42,14 +60,7 @@
                                         <Binding RelativeSource="{RelativeSource AncestorType=ItemsControl}" Path="DataContext.Images"/>
                                     </MultiBinding>
                                 </Grid.Margin>
-                                <Image Source="{Binding Bitmap}" 
-                    Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" 
-                    Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"
-                    Visibility="{Binding Visible, Converter={StaticResource visibleConverter}}">
-                                    <Image.LayoutTransform>
-                                        <RotateTransform CenterX="{Binding CenterX}" CenterY="{Binding CenterY}" Angle="{Binding Angle}"/>
-                                    </Image.LayoutTransform>
-                                </Image>
+                                <ContentControl Content="{Binding}"/>
                                 <ItemsControl ItemsSource="{Binding DisplayText}">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
@@ -117,9 +128,10 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
-        <Image Visibility="{Binding VisibleMessage.Visible, Converter={StaticResource visibleConverter}}" Source="{Binding Path=MessageWindow}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Canvas.Top="420" Width="1280"/>
-        <Image Visibility="{Binding VisibleMessage.Visible, Converter={StaticResource visibleConverter}}" Source="{Binding Path=Character}" Canvas.Right="0" Canvas.Bottom="0" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
-        <TextBlock Visibility="{Binding VisibleMessage.Visible, Converter={StaticResource visibleConverter}}" Text="{Binding Path=Message}" FontSize="30" FontFamily="メイリオ" Background="Transparent" Canvas.Left="28" Canvas.Top="540" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBlock Visibility="{Binding VisibleMessage.Visible, Converter={StaticResource visibleConverter}}" Text="{Binding Path=Name}" FontSize="30" FontFamily="メイリオ" Foreground="Wheat" Background="Transparent" Canvas.Left="28" Canvas.Top="430" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+        <Image Visibility="{Binding VisibleMessage.Visible, Converter={StaticResource vConverter}}" Source="{Binding Path=MessageWindow}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Canvas.Top="420" Width="1280"/>
+        <Image Visibility="{Binding VisibleMessage.Visible, Converter={StaticResource vConverter}}" Source="{Binding Path=Character}" Canvas.Right="0" Canvas.Bottom="0" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
+        <TextBlock Visibility="{Binding VisibleMessage.Visible, Converter={StaticResource vConverter}}" Text="{Binding Path=Message}" FontSize="30" FontFamily="メイリオ" Background="Transparent" Canvas.Left="28" Canvas.Top="540" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock Visibility="{Binding VisibleMessage.Visible, Converter={StaticResource vConverter}}" Text="{Binding Path=Name}" FontSize="30" FontFamily="メイリオ" Foreground="Wheat" Background="Transparent" Canvas.Left="28" Canvas.Top="430" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+        <view:PictureCanvas Width="1280" Height="720"></view:PictureCanvas>
     </Canvas>
 </UserControl>

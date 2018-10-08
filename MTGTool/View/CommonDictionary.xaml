@@ -1,0 +1,21 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:MTGTool.View"
+                    xmlns:movieObject="clr-namespace:MTGTool.Model.MovieObjects"
+                    xmlns:conv="clr-namespace:MTGTool.Converter">
+
+
+    <conv:VisibleConverter x:Key="vConverter"></conv:VisibleConverter>
+    <conv:CardMarginConverter x:Key="marginConveter"></conv:CardMarginConverter>
+
+    <DataTemplate DataType="{x:Type movieObject:MovieObjectImage}">
+        <Image Source="{Binding Bitmap}" 
+                    Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" 
+                    Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"
+                    Visibility="{Binding Visible, Converter={StaticResource vConverter}}">
+            <Image.LayoutTransform>
+                <RotateTransform CenterX="{Binding CenterX}" CenterY="{Binding CenterY}" Angle="{Binding Angle}"/>
+            </Image.LayoutTransform>
+        </Image>
+    </DataTemplate>
+</ResourceDictionary>

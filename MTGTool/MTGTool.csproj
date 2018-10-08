@@ -128,6 +128,7 @@
     <Compile Include="ViewModel\EditMessageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MessageListViewModel.cs" />
+    <Compile Include="ViewModel\PictureCanvasViewModel.cs" />
     <Compile Include="ViewModel\PictureListViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\EditActor.xaml.cs">
@@ -149,6 +150,9 @@
       <DependentUpon>MovieCanvas.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\OutlineText.cs" />
+    <Compile Include="View\PictureCanvas.xaml.cs">
+      <DependentUpon>PictureCanvas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PictureListView.xaml.cs">
       <DependentUpon>PictureListView.xaml</DependentUpon>
     </Compile>
@@ -164,6 +168,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\CommonDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\EditActor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -185,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MovieCanvas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PictureCanvas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

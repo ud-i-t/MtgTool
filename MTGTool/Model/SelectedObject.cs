@@ -20,15 +20,12 @@ namespace MTGTool.Model
             }
             set
             {
-                _bind?.Dispose();
                 _selectedObject = value;
                 _onChange.OnNext(this);
 
                 //if (_selectedObject != null) _bind = _selectedObject.OnChange.Subscribe(_ => _onChange.OnNext(this));
             }
         }
-        IDisposable _bind;
-
         private Subject<SelectedObjectImage> _onChange = new Subject<SelectedObjectImage>();
         public IObservable<SelectedObjectImage> OnChange => _onChange.AsObservable(); 
     }
