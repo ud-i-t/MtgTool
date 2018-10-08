@@ -36,7 +36,10 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AllowDrop="True" Background="Transparent">
+        <i:Interaction.Behaviors>
+            <behaviors:DragAcceptBehavior Description="{Binding Description}" />
+        </i:Interaction.Behaviors>
         <ItemsControl Name="Group" ItemsSource="{Binding Pictures}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
