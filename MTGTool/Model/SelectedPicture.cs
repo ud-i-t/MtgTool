@@ -10,8 +10,8 @@ namespace MTGTool.Model
 {
     class SelectedPicture : ViewModelBase
     {
-        private MoviePicture _picture;
-        public MoviePicture Picture
+        private MoviePictureBase _picture;
+        public MoviePictureBase Picture
         {
             get
             {

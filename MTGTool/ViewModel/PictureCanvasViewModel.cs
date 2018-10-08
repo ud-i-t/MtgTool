@@ -17,7 +17,7 @@ namespace MTGTool.ViewModel
 {
     class PictureCanvasViewModel : ViewModelBase
     {
-        public ObservableCollection<MoviePicture> Pictures { get; } = new ObservableCollection<MoviePicture>();
+        public ObservableCollection<MoviePictureBase> Pictures { get; } = new ObservableCollection<MoviePictureBase>();
 
         public PictureCanvasViewModel()
         {
@@ -29,6 +29,13 @@ namespace MTGTool.ViewModel
                 Y = 100
             };
             Pictures.Add(img);
+
+            Pictures.Add(new MovieText()
+            {
+                Text = @"葉を食むって言ってるくらいだから多分草食なんだろう。可愛いな。
+飛行のクリーチャーを尻尾でベチンベチン
+叩き落してくれる頼れる飛行対策だぜ。",
+            });
 
             Description = new DropAcceptDescription();
             Description.DragOver += Description_DragOver;

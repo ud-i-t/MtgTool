@@ -34,6 +34,39 @@
                 </Border>
             </Canvas>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type movieObject:MovieText}">
+            <Canvas VerticalAlignment="Stretch" HorizontalAlignment="Stretch" DataContext="{Binding}">
+                <Border Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}" BorderThickness="2,2,2,2" BorderBrush="Transparent">
+                    <i:Interaction.Behaviors>
+                        <behaviors:MouseOverBehaviour/>
+                        <behaviors:DoubleClickBehavior Command="{Binding EditCommand}"/>
+                    </i:Interaction.Behaviors>
+                    <Border.LayoutTransform>
+                        <RotateTransform CenterX="{Binding CenterX}" CenterY="{Binding CenterY}" Angle="{Binding Angle}"/>
+                    </Border.LayoutTransform>
+                    <ItemsControl ItemsSource="{Binding DisplayText}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <view:OutlineText Text="{Binding}" 
+                                                  FontSize="{Binding Path=DataContext.FontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}}" 
+                                                  FontWeight="Black" 
+                                                  FontFamily="MigMix 1M" 
+                                                  TextAlignment="Left" 
+                                                  StrokeThickness="{Binding Path=DataContext.BorderSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Canvas}}}"
+                                                  Stroke="White"
+                                                  Fill="Black"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Border>
+            </Canvas>
+        </DataTemplate>
     </UserControl.Resources>
 
     <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AllowDrop="True" Background="Transparent">

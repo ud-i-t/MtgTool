@@ -5,8 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:MTGTool.ViewModel"
              xmlns:local="clr-namespace:MTGTool.View"
+             xmlns:model="clr-namespace:MTGTool.Model.MovieObjects"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:EditPictureViewModel></vm:EditPictureViewModel>
+    </UserControl.DataContext>
     <UserControl.Resources>
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="Width" Value="60"></Setter>
@@ -14,32 +18,76 @@
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="Width" Value="100"></Setter>
         </Style>
+
+        <DataTemplate DataType="{x:Type model:MoviePicture}">
+            <StackPanel Background="White" Width="200">
+                <WrapPanel>
+                    <TextBlock Text="X座標："/>
+                    <TextBox Text="{Binding X}"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Y座標："/>
+                    <TextBox Text="{Binding Y}"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="回転："/>
+                    <TextBox Text="{Binding Angle}"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="スケール："/>
+                    <TextBox Text="{Binding Scale}"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <Button>
+                        <TextBlock Text="保存"></TextBlock>
+                    </Button>
+                    <Button>
+                        <TextBlock Text="キャンセル"></TextBlock>
+                    </Button>
+                </WrapPanel>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type model:MovieText}">
+            <StackPanel Background="White" Width="200">
+                <WrapPanel>
+                    <TextBlock Text="X座標："/>
+                    <TextBox Text="{Binding X}"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Y座標："/>
+                    <TextBox Text="{Binding Y}"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="回転："/>
+                    <TextBox Text="{Binding Angle}"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="スケール："/>
+                    <TextBox Text="{Binding Scale}"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="サイズ："/>
+                    <TextBox Text="{Binding FontSize}"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="ボーダーの太さ："/>
+                    <TextBox Text="{Binding BorderSize}"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="テキスト："/>
+                    <TextBox Text="{Binding Text}" AcceptsReturn="True" Width="400"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <Button>
+                        <TextBlock Text="保存"></TextBlock>
+                    </Button>
+                    <Button>
+                        <TextBlock Text="キャンセル"></TextBlock>
+                    </Button>
+                </WrapPanel>
+            </StackPanel>
+        </DataTemplate>
     </UserControl.Resources>
 
-    <StackPanel Background="White" Width="200">
-        <WrapPanel>
-            <TextBlock Text="X座標："/>
-            <TextBox Text="{Binding SelectedPicture.Picture.X}"/>
-        </WrapPanel>
-        <WrapPanel>
-            <TextBlock Text="Y座標："/>
-            <TextBox Text="{Binding SelectedPicture.Picture.Y}"/>
-        </WrapPanel>
-        <WrapPanel>
-            <TextBlock Text="回転："/>
-            <TextBox Text="{Binding SelectedPicture.Picture.Angle}"/>
-        </WrapPanel>
-        <WrapPanel>
-            <TextBlock Text="スケール："/>
-            <TextBox Text="{Binding SelectedPicture.Picture.Scale}"/>
-        </WrapPanel>
-        <WrapPanel>
-            <Button>
-                <TextBlock Text="保存"></TextBlock>
-            </Button>
-            <Button>
-                <TextBlock Text="キャンセル"></TextBlock>
-            </Button>
-        </WrapPanel>
-    </StackPanel>
+    <ContentControl Content="{Binding SelectedPicture.Picture}"/>
 </UserControl>
