@@ -13,15 +13,23 @@
     <UserControl.DataContext>
         <vm:PictureCanvasViewModel></vm:PictureCanvasViewModel>
     </UserControl.DataContext>
-    
+
     <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="CommonDictionary.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+        <DataTemplate DataType="{x:Type movieObject:MoviePicture}">
+            <Canvas VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Image Source="{Binding Bitmap}" 
+                    Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" 
+                    Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"
+                    Canvas.Left="{Binding X}"
+                    Canvas.Top="{Binding Y}">
+                    <Image.LayoutTransform>
+                        <RotateTransform CenterX="{Binding CenterX}" CenterY="{Binding CenterY}" Angle="{Binding Angle}"/>
+                    </Image.LayoutTransform>
+                </Image>
+            </Canvas>
+        </DataTemplate>
     </UserControl.Resources>
-    
+
     <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <ItemsControl Name="Group" ItemsSource="{Binding Pictures}">
             <ItemsControl.ItemsPanel>

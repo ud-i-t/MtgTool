@@ -13,14 +13,17 @@ namespace MTGTool.ViewModel
 {
     class PictureCanvasViewModel : ViewModelBase
     {
-        public ObservableCollection<MovieObjectImage> Pictures { get; } = new ObservableCollection<MovieObjectImage>();
+        public ObservableCollection<MoviePicture> Pictures { get; } = new ObservableCollection<MoviePicture>();
 
         public PictureCanvasViewModel()
         {
             MemoryStream data = new MemoryStream(File.ReadAllBytes(@"C: \Users\ud\source\repos\MTGTool\MTGTool\bin\Debug\Image\土地\島.png"));
             WriteableBitmap wbmp = new WriteableBitmap(BitmapFrame.Create(data));
             data.Close();
-            var img = new MovieObjectImage(wbmp) { Visible = true };
+            var img = new MoviePicture(wbmp) {
+                X = 100,
+                Y = 100
+            };
             Pictures.Add(img);
         }
     }
