@@ -68,13 +68,16 @@
         </Menu>
         <StackPanel HorizontalAlignment="Left" Width="200" Margin="0,60,0,0">
             <view:MessageList></view:MessageList>
-            <Button Command="{Binding Path=AddCommand}">
-                <TextBlock Text="追加"></TextBlock>
+            <Button Command="{Binding AddCommand}">
+                <TextBlock Text="メッセージ追加"></TextBlock>
             </Button>
-            <Button Command="{Binding Path=EditCommand}">
+            <Button Command="{Binding AddTextCommand}">
+                <TextBlock Text="テキスト追加"></TextBlock>
+            </Button>
+            <Button Command="{Binding EditCommand}">
                 <TextBlock Text="編集"></TextBlock>
             </Button>
-            <Button Command="{Binding Path=GreetCommand}">
+            <Button Command="{Binding GreetCommand}">
                 <TextBlock Text="再生"></TextBlock>
             </Button>
             <Button Command="{Binding CaptureCommand}">

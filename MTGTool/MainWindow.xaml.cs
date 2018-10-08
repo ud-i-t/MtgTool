@@ -38,6 +38,7 @@ namespace MTGTool
             Repository.Set(typeof(SelectedPicture), new SelectedPicture());
             Repository.Set(typeof(MessageList), new MessageList());
             Repository.Set(typeof(MovieObjectList), new MovieObjectList());
+            Repository.Set(typeof(MoviePictureList), new MoviePictureList());
             Repository.Set(typeof(ObjectGroupList), new ObjectGroupList());
             InitializeComponent();
         }

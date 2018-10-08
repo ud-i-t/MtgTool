@@ -11,7 +11,7 @@ namespace MTGTool.Model.MovieObjects
 {
     class MovieText : MoviePictureBase
     {
-        private string _text = string.Empty;
+        private string _text;
         public string Text
         {
             get
@@ -56,5 +56,10 @@ namespace MTGTool.Model.MovieObjects
         }
 
         public ObservableCollection<string> DisplayText { get; } = new ObservableCollection<string>();
+
+        public MovieText()
+        {
+            Text = "新規テキスト";
+        }
     }
 }

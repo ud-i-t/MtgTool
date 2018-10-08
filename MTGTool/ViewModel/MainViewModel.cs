@@ -127,7 +127,23 @@ namespace MTGTool.ViewModel
         {
             var repo = Repository.Get(typeof(MessageList)) as MessageList;
             var actors = Repository.Get(typeof(ActorList)) as ActorList;
-            repo.Add(new Message() { Actor = actors.First()});
+            repo.Add(new Message() { Actor = actors.First() });
+        }
+
+        private ICommand _addTextCommand;
+        public ICommand AddTextCommand
+        {
+            get
+            {
+                return _addTextCommand ??
+                    (_addTextCommand = new RelayCommand(AddTextCommandExecute, OK));
+            }
+        }
+
+        private void AddTextCommandExecute()
+        {
+            var repo = Repository.Get(typeof(MoviePictureList)) as MoviePictureList;
+            repo.Add(new MovieText());
         }
 
         private ICommand _actorCommand;

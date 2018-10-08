@@ -118,6 +118,7 @@
     <Compile Include="Model\MovieObjects\MovieObjectList.cs" />
     <Compile Include="Model\MovieObjects\MoviePicture.cs" />
     <Compile Include="Model\MovieObjects\MoviePictureBase.cs" />
+    <Compile Include="Model\MovieObjects\MoviePictureList.cs" />
     <Compile Include="Model\MovieObjects\MovieText.cs" />
     <Compile Include="Model\SelectedMessage.cs" />
     <Compile Include="Model\SelectedObjectImage.cs" />
