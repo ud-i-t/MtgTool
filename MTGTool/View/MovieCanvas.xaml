@@ -130,7 +130,7 @@
         </ItemsControl>
         <Image Visibility="{Binding VisibleMessage.Visible, Converter={StaticResource vConverter}}" Source="{Binding Path=MessageWindow}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Canvas.Top="420" Width="1280"/>
         <Image Visibility="{Binding VisibleMessage.Visible, Converter={StaticResource vConverter}}" Source="{Binding Path=Character}" Canvas.Right="0" Canvas.Bottom="0" Width="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelWidth}" Height="{Binding RelativeSource={RelativeSource Self}, Path=Source.PixelHeight}"/>
-        <TextBlock Visibility="{Binding VisibleMessage.Visible, Converter={StaticResource vConverter}}" Text="{Binding Path=Message}" FontSize="30" FontFamily="メイリオ" Background="Transparent" Canvas.Left="28" Canvas.Top="540" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock Visibility="{Binding VisibleMessage.Visible, Converter={StaticResource vConverter}}" Text="{Binding Path=Message}" FontSize="30" FontFamily="メイリオ" Background="Transparent" Canvas.Left="28" Canvas.Top="510" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBlock Visibility="{Binding VisibleMessage.Visible, Converter={StaticResource vConverter}}" Text="{Binding Path=Name}" FontSize="30" FontFamily="メイリオ" Foreground="Wheat" Background="Transparent" Canvas.Left="28" Canvas.Top="430" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
         <view:PictureCanvas Width="1280" Height="720"></view:PictureCanvas>
     </Canvas>
