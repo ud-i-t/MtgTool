@@ -15,7 +15,6 @@
     <UserControl.DataContext>
         <vm:PictureCanvasViewModel></vm:PictureCanvasViewModel>
     </UserControl.DataContext>
-
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type movieObject:MoviePicture}">
             <Canvas VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
@@ -40,10 +39,10 @@
                 <Canvas.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="最前面に移動"></MenuItem>
-                        <MenuItem Header="前面に移動"></MenuItem>
+                        <MenuItem Header="前面に移動" Command="{Binding FowardCommand}"></MenuItem>
                         <MenuItem Header="背面に移動"></MenuItem>
                         <MenuItem Header="最背面に移動"></MenuItem>
-                        <MenuItem Header="削除"></MenuItem>
+                        <MenuItem Header="削除" Command="{Binding RemoveCommand}"></MenuItem>
                     </ContextMenu>
                 </Canvas.ContextMenu>
                 <Border Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}" BorderThickness="2,2,2,2" BorderBrush="Transparent">

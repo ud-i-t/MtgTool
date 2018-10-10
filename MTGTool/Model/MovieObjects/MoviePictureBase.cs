@@ -1,5 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.CommandWpf;
 using MTGTool.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -65,6 +65,8 @@ namespace MTGTool.Model.MovieObjects
             }
         }
 
+        MoviePictureList _list = Repository.Get(typeof(MoviePictureList)) as MoviePictureList;
+
         private ICommand _editCommand;
         public ICommand EditCommand
         {
@@ -80,6 +82,39 @@ namespace MTGTool.Model.MovieObjects
                         pallet.Pallet = new EditPictureViewModel();
                     }
                     , _ => true));
+            }
+        }
+
+        private ICommand _removeCommand;
+        public ICommand RemoveCommand
+        {
+            get
+            {
+                return _removeCommand ??
+                    (_removeCommand = new RelayCommand(() =>
+                    {
+                        var list = Repository.Get(typeof(MoviePictureList)) as MoviePictureList;
+                        list.Remove(this);
+                    }
+                    , () => true));
+            }
+        }
+
+        private ICommand _fowardCommand;
+        public ICommand FowardCommand
+        {
+            get
+            {
+                return _fowardCommand ??
+                    (_fowardCommand = new RelayCommand(() =>
+                    {
+                        var index = _list.IndexOf(this);
+                        _list.Remove(this);
+                        _list.Insert(index + 1, this);
+                    }
+                    , () => {
+                        return _list.Last() != this;
+                    }));
             }
         }
     }

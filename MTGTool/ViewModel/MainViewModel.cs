@@ -31,8 +31,10 @@ namespace MTGTool.ViewModel
     class MainViewModel : ViewModelBase, IDisposable
     {
         public Thickness _palletMargin = new Thickness(1600, 0, 0, -10);
-        public Thickness PalletMargin {
-            get {
+        public Thickness PalletMargin
+        {
+            get
+            {
                 return _palletMargin;
             }
             set
@@ -68,7 +70,7 @@ namespace MTGTool.ViewModel
 
         private void GreetCommandExecute()
         {
-            var objList = Repository.Get(typeof(MovieObjectList)) as MovieObjectList; 
+            var objList = Repository.Get(typeof(MovieObjectList)) as MovieObjectList;
             var msgList = Repository.Get(typeof(MessageList)) as MessageList;
             var current = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
 
