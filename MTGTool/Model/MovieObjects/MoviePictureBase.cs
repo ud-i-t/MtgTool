@@ -112,8 +112,66 @@ namespace MTGTool.Model.MovieObjects
                         _list.Remove(this);
                         _list.Insert(index + 1, this);
                     }
-                    , () => {
+                    , () =>
+                    {
                         return _list.Last() != this;
+                    }));
+            }
+        }
+
+        private ICommand _backCommand;
+        public ICommand BackCommand
+        {
+            get
+            {
+                return _backCommand ??
+                    (_backCommand = new RelayCommand(() =>
+                    {
+                        var index = _list.IndexOf(this);
+                        _list.Remove(this);
+                        _list.Insert(index - 1, this);
+                    }
+                    , () =>
+                    {
+                        return _list.First() != this;
+                    }));
+            }
+        }
+
+        private ICommand _topCommand;
+        public ICommand TopCommand
+        {
+            get
+            {
+                return _topCommand ??
+                    (_topCommand = new RelayCommand(() =>
+                    {
+                        var index = _list.IndexOf(this);
+                        _list.Remove(this);
+                        _list.Add(this);
+                    }
+                    , () =>
+                    {
+                        return _list.Last() != this;
+                    }));
+            }
+        }
+
+        private ICommand _bottomCommand;
+        public ICommand BottomCommand
+        {
+            get
+            {
+                return _bottomCommand ??
+                    (_bottomCommand = new RelayCommand(() =>
+                    {
+                        var index = _list.IndexOf(this);
+                        _list.Remove(this);
+                        _list.Insert(0, this);
+                    }
+                    , () =>
+                    {
+                        return _list.First() != this;
                     }));
             }
         }
