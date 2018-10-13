@@ -126,6 +126,7 @@
     <Compile Include="Model\Group\ObjectGroup.cs" />
     <Compile Include="Model\Image.cs" />
     <Compile Include="Model\IMassage.cs" />
+    <Compile Include="Model\MaterialCollection.cs" />
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\MessageList.cs" />
     <Compile Include="Model\MovieCommand\RemoveObject.cs" />
@@ -174,6 +175,9 @@
     <Compile Include="View\EditPicture.xaml.cs">
       <DependentUpon>EditPicture.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MaterialView.xaml.cs">
+      <DependentUpon>MaterialView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MessageList.xaml.cs">
       <DependentUpon>MessageList.xaml</DependentUpon>
     </Compile>
@@ -220,6 +224,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EditPicture.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MaterialView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -3,6 +3,7 @@ using MTGTool.Model.Actors;
 using MTGTool.Model.Group;
 using MTGTool.Model.MovieObjects;
 using MTGTool.Model.System;
+using MTGTool.View;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
 using System;
@@ -41,7 +42,7 @@ namespace MTGTool
             Repository.Set(typeof(SelectedMessage), new SelectedMessage());
             Repository.Set(typeof(SelectedObjectImage), new SelectedObjectImage());
             Repository.Set(typeof(SelectedPicture), new SelectedPicture());
-            Repository.Set(typeof(MessageList), new MessageList());
+            Repository.Set(typeof(Model.MessageList), new Model.MessageList());
             Repository.Set(typeof(MovieObjectList), new MovieObjectList());
             Repository.Set(typeof(MoviePictureList), new MoviePictureList());
             Repository.Set(typeof(ObjectGroupList), new ObjectGroupList());
@@ -60,6 +61,12 @@ namespace MTGTool
                 var mixer = new MixingSampleProvider(new ISampleProvider[] { trimmed, reader2 });
                 WaveFileWriter.CreateWaveFile16("mixed.wav", mixer);
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var subWindow = new MaterialView();
+            subWindow.ShowDialog();
         }
     }
 }

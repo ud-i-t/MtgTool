@@ -86,6 +86,9 @@
             <Button Click="Button_Click">
                 <TextBlock Text="音声合成"></TextBlock>
             </Button>
+            <Button Click="Button_Click_1">
+                <TextBlock Text="素材登録"></TextBlock>
+            </Button>
             <WrapPanel>
                 <CheckBox IsChecked="{Binding VisibleMessageWindow.Visible}">
                 </CheckBox>
