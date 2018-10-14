@@ -20,25 +20,10 @@ namespace MTGTool.ViewModel
     class PictureCanvasViewModel : ViewModelBase
     {
         public MoviePictureList Pictures { get; } = Repository.Get(typeof(MoviePictureList)) as MoviePictureList;
+        public VisibleMessageWindow Visible { get; } = Repository.Get(typeof(VisibleMessageWindow)) as VisibleMessageWindow;
 
         public PictureCanvasViewModel()
         {
-//            MemoryStream data = new MemoryStream(File.ReadAllBytes(@"C: \Users\ud\source\repos\MTGTool\MTGTool\bin\Debug\Image\土地\島.png"));
-//            WriteableBitmap wbmp = new WriteableBitmap(BitmapFrame.Create(data));
-//            data.Close();
-//            var img = new MoviePicture(wbmp) {
-//                X = 100,
-//                Y = 100
-//            };
-//            Pictures.Add(img);
-
-//            Pictures.Add(new MovieText()
-//            {
-//                Text = @"葉を食むって言ってるくらいだから多分草食なんだろう。可愛いな。
-//飛行のクリーチャーを尻尾でベチンベチン
-//叩き落してくれる頼れる飛行対策だぜ。",
-//            });
-
             Description = new DropAcceptDescription();
             Description.DragOver += Description_DragOver;
             Description.DragDrop += Description_DragDrop;

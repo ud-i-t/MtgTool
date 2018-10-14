@@ -10,12 +10,14 @@
              xmlns:behaviors="clr-namespace:MTGTool.Behavior"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:movieObject="clr-namespace:MTGTool.Model.MovieObjects"
+             xmlns:conv="clr-namespace:MTGTool.Converter"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
         <vm:PictureCanvasViewModel></vm:PictureCanvasViewModel>
     </UserControl.DataContext>
     <UserControl.Resources>
+        <conv:VisibleConverter x:Key="vConverter"></conv:VisibleConverter>
         <DataTemplate DataType="{x:Type movieObject:MoviePicture}">
             <Canvas VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                 <Canvas.ContextMenu>
@@ -86,7 +88,7 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AllowDrop="True" Background="Transparent">
+    <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AllowDrop="True" Background="Transparent" Visibility="{Binding Visible.PictureVisible, Converter={StaticResource vConverter}}">
         <i:Interaction.Behaviors>
             <behaviors:DragAcceptBehavior Description="{Binding Description}" />
         </i:Interaction.Behaviors>

@@ -82,9 +82,8 @@
                 <TextBlock Text="素材登録"></TextBlock>
             </Button>
             <WrapPanel>
-                <CheckBox IsChecked="{Binding VisibleMessageWindow.Visible}">
-                </CheckBox>
-                <TextBlock Text="メッセージウインドウ・立ち絵を表示"></TextBlock>
+                <CheckBox Content="メッセージウインドウ・立ち絵を表示" IsChecked="{Binding VisibleMessageWindow.WindowVisible}"/>
+                <CheckBox Content="ピクチャーレイヤを表示" IsChecked="{Binding VisibleMessageWindow.PictureVisible}"/>
             </WrapPanel>
         </StackPanel>
         <Grid Margin="200, 25, 25, 0">

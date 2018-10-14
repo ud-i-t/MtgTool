@@ -9,16 +9,30 @@ namespace MTGTool.Model
 {
     class VisibleMessageWindow : ViewModelBase
     {
-        private bool _visible = true;
-        public bool Visible {
+        private bool _windowVisible = true;
+        public bool WindowVisible {
             get
             {
-                return _visible;
+                return _windowVisible;
             }
             set
             {
-                _visible = value;
-                RaisePropertyChanged(nameof(Visible));
+                _windowVisible = value;
+                RaisePropertyChanged(nameof(WindowVisible));
+            }
+        }
+
+        private bool _pictureVisible = true;
+        public bool PictureVisible
+        {
+            get
+            {
+                return _pictureVisible;
+            }
+            set
+            {
+                _pictureVisible = value;
+                RaisePropertyChanged(nameof(PictureVisible));
             }
         }
     }
