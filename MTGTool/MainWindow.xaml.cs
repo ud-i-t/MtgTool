@@ -37,6 +37,7 @@ namespace MTGTool
 
             Repository.Load();
             Repository.Set(typeof(FontList), new FontList());
+            Repository.Set(typeof(MaterialCollection), new MaterialCollection());
             Repository.Set(typeof(VisibleMessageWindow), new VisibleMessageWindow());
             Repository.Set(typeof(SelectedPallet), new SelectedPallet());
             Repository.Set(typeof(SelectedMessage), new SelectedMessage());

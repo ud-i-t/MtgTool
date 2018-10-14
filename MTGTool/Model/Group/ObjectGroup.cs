@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace MTGTool.Model.Group
 {
@@ -138,8 +139,8 @@ namespace MTGTool.Model.Group
 
         private void Description_DragDrop(DragEventArgs args)
         {
-            if (!args.Data.GetDataPresent(typeof(Image))) return;
-            var data = args.Data.GetData(typeof(Image)) as Image;
+            if (!args.Data.GetDataPresent(typeof(WriteableBitmap))) return;
+            var data = args.Data.GetData(typeof(WriteableBitmap)) as BitmapSource;
             if (data == null) return;
             var fe = args.OriginalSource as FrameworkElement;
             if (fe == null) return;
@@ -147,7 +148,7 @@ namespace MTGTool.Model.Group
             if (target == null) return;
 
             var obj = new MovieObject();
-            var img = new MovieObjectImage(data.Bitmap) { Visible = true };
+            var img = new MovieObjectImage(data) { Visible = true };
             obj.Images.Add(img);
             var currentMsg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
             currentMsg.message.AddCommand(new MovieCommand.AddObject(img));
@@ -164,7 +165,7 @@ namespace MTGTool.Model.Group
                 args.Effects = DragDropEffects.None;
                 return;
             }
-            if (!args.Data.GetDataPresent(typeof(Image)))
+            if (!args.Data.GetDataPresent(typeof(WriteableBitmap)))
             {
                 args.Effects = DragDropEffects.None;
                 return;

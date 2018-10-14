@@ -15,24 +15,7 @@ namespace MTGTool.ViewModel
 {
     class PictureListViewModel : ViewModelBase
     {
-        public ObservableCollection<Image> Pictures { get; } = new ObservableCollection<Image>();
-
-        public PictureListViewModel()
-        {
-            System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(@"Image");
-            IEnumerable<System.IO.FileInfo> files =
-                di.EnumerateFiles("*.png", System.IO.SearchOption.AllDirectories);
-
-            //ファイルを列挙する
-            foreach (System.IO.FileInfo f in files)
-            {
-                MemoryStream data = new MemoryStream(File.ReadAllBytes(f.FullName));
-                WriteableBitmap wbmp = new WriteableBitmap(BitmapFrame.Create(data));
-                data.Close();
-                Pictures.Add(new Image(wbmp));
-            }
-        }
-
-        
+        private MaterialCollection _materials = Repository.Get(typeof(MaterialCollection)) as MaterialCollection;
+        public ObservableCollection<BitmapSource> Pictures => _materials.Pictures;
     }
 }

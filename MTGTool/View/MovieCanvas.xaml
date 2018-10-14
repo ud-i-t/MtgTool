@@ -91,7 +91,7 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type group:ObjectGroup}">
             <Canvas>
-                <Border BorderBrush="Black" BorderThickness="2" Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}">
+                <Border BorderBrush="Black" BorderThickness="2" Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}" Background="Transparent">
                     <Border.LayoutTransform>
                         <RotateTransform Angle="{Binding Angle}"/>
                     </Border.LayoutTransform>

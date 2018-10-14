@@ -61,13 +61,13 @@ namespace MTGTool.ViewModel
 
         private void Description_DragDrop(System.Windows.DragEventArgs args)
         {
-            if (!args.Data.GetDataPresent(typeof(Image))) return;
-            var data = args.Data.GetData(typeof(Image)) as Image;
+            if (!args.Data.GetDataPresent(typeof(WriteableBitmap))) return;
+            var data = args.Data.GetData(typeof(WriteableBitmap)) as BitmapSource;
             if (data == null) return;
             var fe = args.OriginalSource as FrameworkElement;
             if (fe == null) return;
 
-            var img = new MoviePicture(data.Bitmap);
+            var img = new MoviePicture(data);
             Pictures.Add(img);
         }
 
@@ -78,7 +78,7 @@ namespace MTGTool.ViewModel
                 args.Effects = DragDropEffects.None;
                 return;
             }
-            if (!args.Data.GetDataPresent(typeof(Image)))
+            if (!args.Data.GetDataPresent(typeof(WriteableBitmap)))
             {
                 args.Effects = DragDropEffects.None;
                 return;

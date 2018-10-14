@@ -59,15 +59,15 @@ namespace MTGTool.Model.MovieObjects
 
         private void Description_DragDrop(DragEventArgs args)
         {
-            if (!args.Data.GetDataPresent(typeof(Image))) return;
-            var data = args.Data.GetData(typeof(Image)) as Image;
+            if (!args.Data.GetDataPresent(typeof(BitmapSource))) return;
+            var data = args.Data.GetData(typeof(BitmapSource)) as BitmapSource;
             if (data == null) return;
             var fe = args.OriginalSource as FrameworkElement;
             if (fe == null) return;
             var target = fe.DataContext as MovieObjectImage;
             if (target == null) return;
 
-            var img = new MovieObjectImage(data.Bitmap) { Visible = true };
+            var img = new MovieObjectImage(data) { Visible = true };
             var currentMsg = Repository.Get(typeof(SelectedMessage)) as SelectedMessage;
             currentMsg.message.AddCommand(new MovieCommand.AddObject(img));
 
@@ -78,7 +78,7 @@ namespace MTGTool.Model.MovieObjects
         {
             if (args.AllowedEffects.HasFlag(DragDropEffects.Copy))
             {
-                if (args.Data.GetDataPresent(typeof(Image)))
+                if (args.Data.GetDataPresent(typeof(BitmapSource)))
                 {
                     return;
                 }
